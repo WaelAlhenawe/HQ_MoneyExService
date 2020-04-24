@@ -1,9 +1,15 @@
 package affix.java.effective.moneyservice;
 
 import java.time.LocalDateTime;
+import java.util.logging.Logger;
+
+
 
 public final class Transaction implements java.io.Serializable {
 	
+		public enum TransactionMode {
+
+	}
 		private static final long serialVersionUID = 1L;
 //		Order confirmedOrder;
 //		double commission;
@@ -14,6 +20,14 @@ public final class Transaction implements java.io.Serializable {
 		private final TransactionMode mode;
 		private static int uniqueId = 1;
 		
+		
+
+		// Set up a logger
+		private static Logger logger;
+					
+		static{
+			logger = Logger.getLogger("affix.java.effective.moneyservice");
+			}
 		
 		public Transaction(LocalDateTime timeStamp, String currencyCode, int amount, TransactionMode mode) {
 			
@@ -69,6 +83,9 @@ public final class Transaction implements java.io.Serializable {
 		}
 		@Override
 		public int hashCode() {
+			
+			logger.finest("Transaction hash code used");
+			
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + amount;
@@ -80,6 +97,9 @@ public final class Transaction implements java.io.Serializable {
 		}
 		@Override
 		public boolean equals(Object obj) {
+			
+			logger.finest("Transaction equals used ");
+			
 			if (this == obj)
 				return true;
 			if (obj == null)
