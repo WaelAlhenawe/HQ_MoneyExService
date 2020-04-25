@@ -62,6 +62,9 @@ public class HQ_App
 	    } else {
 	        System.out.println("There are more than one file");
 		    list.forEach(i->System.out.println("DEBUG: "+i));
+		    for(String temp: list) {
+		    	t = readObject(temp);
+		    }
 	    }
 	    
 		String code = "GBP";
