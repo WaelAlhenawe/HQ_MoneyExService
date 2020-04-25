@@ -40,7 +40,7 @@ public class HQ_App
 		final double comissionSell = 0.995;
 
 		String fileDirectory = "";
-		String filenameContains = "SOUTH";
+		String searchString = "SOUTH";
 
 		List<String> list = null;
 
@@ -48,7 +48,7 @@ public class HQ_App
 		try {
 			list = Files.walk(Paths.get(fileDirectory))
 					.map((q) -> q.getFileName().toString())
-					.filter((s) -> s.contains(filenameContains))
+					.filter((s) -> s.contains(searchString))
 					.collect(Collectors.toList());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -96,7 +96,7 @@ public class HQ_App
 				}
 				int profit = sellAmount - buyAmount;
 
-				System.out.println("\nStatistics for site SOUTH - Currency " +currCode );
+				System.out.println("\nStatistics for site "+searchString+" - Currency " +currCode );
 				System.out.println("Total  SELL\t"+sellAmount+"  SEK");
 				System.out.println("Total   BUY\t"+buyAmount+"  SEK");
 				System.out.println("Profit    \t"+profit+"  SEK");
