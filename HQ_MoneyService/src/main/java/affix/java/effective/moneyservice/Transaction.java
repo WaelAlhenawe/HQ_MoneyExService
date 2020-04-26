@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 public final class Transaction implements java.io.Serializable {
 	
 		private static final long serialVersionUID = 1L;
-//		Order confirmedOrder;
-//		double commission;
+		
 		private final int id;
 		private final LocalDateTime timeStamp;
 		private final String currencyCode;

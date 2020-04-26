@@ -1,0 +1,166 @@
+package ya.java.effective.HQ_MoneyService;
+
+import java.util.Map;
+import java.util.Scanner;
+
+public class HQApp_Support {
+
+	static Scanner input = new Scanner(System.in);
+	static {
+		input.useDelimiter(System.getProperty("line.separator"));
+	}
+
+	static String SiteChoice() {
+		
+		String north = "NORTH";
+		String center = "CENTER";
+		String south = "SOUTH";
+		String site = null;
+		
+		int choice = 0;
+		boolean ok;
+		do {
+			ok = true;
+			System.out.println("Choose a Site ");
+			System.out.println("1 - NORTH");
+			System.out.println("2 - CENTER");
+			System.out.println("3 - SOUTH");
+			System.out.println("4 - ALL");
+
+			System.out.print("Enter Your Choice:\t");
+			String Site_choice = input.next();
+			try {
+				choice = Integer.parseInt(Site_choice);
+			}catch(NumberFormatException e) {
+				//logger.warning("Your choice " + Userchoice + " is not accepted!");
+				ok = false;
+			}
+
+		}while(!ok); 
+		
+		if(choice == 1) {
+			site = north;
+		} if(choice == 2) {
+			site = center;
+		} if(choice == 3) {
+			site = south;
+		} else {
+			site = ".ser";
+		}
+				
+		return site;
+	}
+
+	static String PeriodChoice() {
+
+		String day = "DAY";
+		String week = "WEEK";
+		String month = "MONTH";
+		String period = null;
+		
+		int choice =0;
+		boolean ok;
+		do {
+			ok = true;
+
+			System.out.println("\nChoose a Period ");
+			System.out.println("1 - DAY ");
+			System.out.println("2 - WEEK");
+			System.out.println("3 - MONTH");
+
+			System.out.print("Enter Your Choice:\t");
+			String Period_choice = input.next();
+			try {
+				choice = Integer.parseInt(Period_choice);
+			}catch(NumberFormatException e) {
+				//logger.warning("Your choice " + Userchoice + " is not accepted!");
+				ok = false;
+			}
+
+		}while(!ok); 
+		
+		if(choice == 1) {
+			period = day;
+		} if(choice == 2) {
+			period = week;
+		} if(choice == 3) {
+			period = month;
+		}
+		
+		return period;
+
+	}	
+
+	static String StartDay_Period() {
+
+		System.out.print("Enter start day of Period:\t");
+		String StartDay_Period= input.next();
+		return  StartDay_Period;
+	}	
+
+	static String currencyChoice(Map<String, Double>currencyMap) {
+
+		String Currency;
+		boolean ok;
+		do {
+
+			System.out.println("\nChoose a Currency");
+			currencyMap.keySet().forEach(i->System.out.print(i +" "));
+			System.out.print("ALL");
+			System.out.print("\nEnter the choice:\t");
+			Currency = input.next();
+
+			if(currencyMap.containsKey(Currency) || Currency.equalsIgnoreCase("ALL")) {
+				ok = true;
+			}
+			else {ok= false;}
+
+			if(!ok) {
+				System.out.println(" Sorry!!! Not supported this currency today");
+			}
+		}while(!ok);
+
+
+		return Currency;
+
+	}
+
+	static void printingChoiceForStats(String siteChoice,String periodChoice,String startDayPeriod,String currencyCode) {
+
+		System.out.println("----------------------------------------------------------- ");
+
+		System.out.println("Choice for statistics: ");
+		switch(siteChoice) {
+
+		case "NORTH":
+			System.out.println("Site:\tNORTH");
+			break;
+		case "CENTER":
+			System.out.println("Site:\tCENTER");	
+			break;
+		case "SOUTH":
+			System.out.println("Site:\tSOUTH");
+			break;
+		case "ALL":
+			System.out.println("Site:\tALL");	
+			break;
+		}
+
+		switch(periodChoice) {
+
+		case "DAY":
+			System.out.println("Period:\t"+"DAY "+startDayPeriod);
+			break;
+		case "WEEK":
+			System.out.println("Period:\t"+"WEEK starting  "+startDayPeriod);
+			break;
+		case "MONTH":
+			System.out.println("Period:\t"+"MONTH starting  "+startDayPeriod);
+			break;
+		}
+
+		System.out.println("Currency:\t"+currencyCode.toUpperCase());
+
+	}
+
+}
