@@ -1,0 +1,12 @@
+﻿Period		Grupp				Serie		Värde
+2020-04-01;	Valutor mot svenska kronor;	1 AUD;		6.0501
+2020-04-01;	Valutor mot svenska kronor;	100 CHF;	1034.1287
+2020-04-01;	Valutor mot svenska kronor;	1 CNY;		1.4033
+2020-04-01;	Valutor mot svenska kronor;	100 DKK;	146.5657
+2020-04-01;	Valutor mot svenska kronor;	1 EUR;		10.9377
+2020-04-01;	Valutor mot svenska kronor;	1 GBP;		12.2993
+2020-04-01;	Valutor mot svenska kronor;	100 INR;	13.2366
+2020-04-01;	Valutor mot svenska kronor;	100 JPY;	9.2693
+2020-04-01;	Valutor mot svenska kronor;	100 NOK;	95.9989
+2020-04-01;	Valutor mot svenska kronor;	100 RUB;	12.583
+2020-04-01;	Valutor mot svenska kronor;	1 USD;		9.9638
