@@ -45,7 +45,7 @@ public class HQApp_Support {
 		} if(choice == 3) {
 			site = south;
 		} else {
-			site = "ALL";
+			site = ".ser";
 		}
 				
 		return site;

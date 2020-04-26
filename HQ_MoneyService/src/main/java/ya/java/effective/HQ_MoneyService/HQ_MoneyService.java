@@ -80,6 +80,11 @@ public class HQ_MoneyService implements HQ{
 	public static void fileProcessAndCalc(String site, String date, String startDate, String code) {
 
 		String fileDirectory = "";
+		String siteName = site;
+		
+		if(site.equalsIgnoreCase(".ser")) {
+			siteName = "ALL";
+		}
 		
 		int dayCounter = 0;
 		
@@ -134,6 +139,27 @@ public class HQ_MoneyService implements HQ{
 				int buyAmount = 0;
 				int sellAmount = 0;
 
+				if(code.equalsIgnoreCase("ALL")) {
+
+					for(Transaction temp: t) {
+
+						if(TransactionMode.BUY.equals(temp.getMode())) {
+
+							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+							buyAmount += TransactionAmount;
+
+						}
+						else if(TransactionMode.SELL.equals(temp.getMode())) {
+
+							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+							sellAmount += TransactionAmount;
+
+						}	
+					}
+
+				}
+				
+
 				for(Transaction temp: t) {
 
 					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
@@ -153,9 +179,11 @@ public class HQ_MoneyService implements HQ{
 					}
 
 				}
+				
+
 				int profit = sellAmount - buyAmount;
 
-				System.out.println("\nStatistics for site "+site+" - Currency " +code+ " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")");
+				System.out.println("\nStatistics for site "+siteName+" - Currency " +code+ " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")");
 				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
 				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
 				System.out.println("Profit    \t"+profit+"\tSEK");
@@ -166,6 +194,7 @@ public class HQ_MoneyService implements HQ{
 	private static int transactionAmount(String code, double comission, int value) {
 		
 		//Get the specific rate
+
 		double rate = currencyMap.get(code).doubleValue();
 		//Get the  rate
 		double rateIncComission= ((rate * comission));
