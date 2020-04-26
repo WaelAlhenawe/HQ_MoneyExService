@@ -68,6 +68,17 @@ public class HQ_MoneyService implements HQ{
 
 	static void searchAndPrintFiles(String site, String date, String startDate, String code) {
 	
+
+		
+		
+			
+			fileProcessAndCalc(site, date, startDate, code);
+		
+	}
+
+
+	public static void fileProcessAndCalc(String site, String date, String startDate, String code) {
+
 		String fileDirectory = "";
 		
 		int dayCounter = 0;
@@ -75,26 +86,16 @@ public class HQ_MoneyService implements HQ{
 		final double commissionBuy = 1.005;
 		final double comissionSell = 0.995;
 
-		if(date.contains("DAY")) {
+		if(date.equalsIgnoreCase("DAY")) {
 			dayCounter = 1; 
 		}
-		if(date.contains("WEEK")) {
+		if(date.equalsIgnoreCase("WEEK")) {
 			dayCounter = 7;
 		}
-		if(date.contains("MONTH")) {
+		if(date.equalsIgnoreCase("MONTH")) {
 			dayCounter = 30;
 		}
 		
-		for(int i=0; i<dayCounter; i++) {
-			
-			fileProcessAndCalc(site, date, code, fileDirectory, commissionBuy, comissionSell, dayCounter);
-		}
-	}
-
-
-	public static void fileProcessAndCalc(String site, String date, String code, String fileDirectory,
-			final double commissionBuy, final double comissionSell, int dayCounter) {
-
 		List<Transaction> t = new ArrayList<Transaction>();
 		List<String> list = null;
 
@@ -120,13 +121,15 @@ public class HQ_MoneyService implements HQ{
 //			System.out.println("There are more than one file");
 //			list.forEach(i->System.out.println("DEBUG: "+i));
 			String tempStr;
-			
+			if(list.size() < dayCounter) {
+				dayCounter = list.size();
+			}
+						
 //			for(String tempStr: list) {
 				for(int i=0; i<dayCounter; i++) {
 					tempStr = list.get(i);
 					
 				t = readObject(tempStr);
-				String dateOutput = list.get(i);
 				
 				int buyAmount = 0;
 				int sellAmount = 0;
@@ -151,8 +154,8 @@ public class HQ_MoneyService implements HQ{
 
 				}
 				int profit = sellAmount - buyAmount;
-//				String dateOutput = tempStr;
-				System.out.println("\nStatistics for site "+site+" - Currency " +code+ " - Date "+date+ " ("+dateOutput.replaceAll("[^0-9?!\\-]","")+")");
+
+				System.out.println("\nStatistics for site "+site+" - Currency " +code+ " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")");
 				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
 				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
 				System.out.println("Profit    \t"+profit+"\tSEK");

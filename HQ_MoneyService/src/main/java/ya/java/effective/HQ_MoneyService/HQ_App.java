@@ -34,10 +34,10 @@ public class HQ_App
 		String StartDay_Period = HQApp_Support.StartDay_Period();
 		String Currency = HQApp_Support.currencyChoice(currencyMap);
 		
+		HQApp_Support.printingChoiceForStats(SiteChoice,PeriodChoice,StartDay_Period,Currency);
 		
 		HQ_MoneyService.searchAndPrintFiles(SiteChoice, PeriodChoice, StartDay_Period, Currency);
 
-		HQApp_Support.printingChoiceForStats(SiteChoice,PeriodChoice,StartDay_Period,Currency);
 
 	}
 
