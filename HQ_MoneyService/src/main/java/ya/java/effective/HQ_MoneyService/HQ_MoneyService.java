@@ -105,11 +105,13 @@ public class HQ_MoneyService implements HQ{
 					.filter((s) -> s.contains(site))
 //					.sorted(Comparator.comparing(COMPARE DATE AND ORDER OF FILE)
 					.collect(Collectors.toList());
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
+		Collections.sort(list);
 		if(list.size() == 1){
 //			System.out.println("Your file is:");
 //			System.out.println("DEBUG: "+list);
