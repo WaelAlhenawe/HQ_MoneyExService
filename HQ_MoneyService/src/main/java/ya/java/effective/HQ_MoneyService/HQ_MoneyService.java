@@ -27,11 +27,11 @@ public class HQ_MoneyService implements HQ{
 	static Map<String, Double> currencyMap = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt").orElse(Collections.emptyMap());
 
 	// Set up a logger
-//	private static Logger logger;
+	//	private static Logger logger;
 
-//	static{
-//		logger = Logger.getLogger("ya.java.effective.moneyservice");
-//	}
+	//	static{
+	//		logger = Logger.getLogger("ya.java.effective.moneyservice");
+	//	}
 
 
 	/**
@@ -59,35 +59,21 @@ public class HQ_MoneyService implements HQ{
 	@Override
 	public void profitStatistic(String destination) {
 
-//		extracted(site, date, code);
-
-
 
 	}
 
 
-	static void searchAndPrintFiles(String site, String date, String startDate, String code) {
-	
+	static void searchFilter(String site, String date, String startDate, String code, String fileDirectory) {
 
-		
-		
-			
-			fileProcessAndCalc(site, date, startDate, code);
-		
-	}
-
-
-	public static void fileProcessAndCalc(String site, String date, String startDate, String code) {
-
-		String fileDirectory = "";
 		String siteName = site;
-		
+		String currencyName = null;
+
 		if(site.equalsIgnoreCase(".ser")) {
 			siteName = "ALL";
 		}
-		
+
 		int dayCounter = 0;
-		
+
 		final double commissionBuy = 1.005;
 		final double comissionSell = 0.995;
 
@@ -100,8 +86,7 @@ public class HQ_MoneyService implements HQ{
 		if(date.equalsIgnoreCase("MONTH")) {
 			dayCounter = 30;
 		}
-		
-		List<Transaction> t = new ArrayList<Transaction>();
+
 		List<String> list = null;
 
 		//	    Open file by part of its name - ie SEARCH
@@ -109,60 +94,60 @@ public class HQ_MoneyService implements HQ{
 			list = Files.walk(Paths.get(fileDirectory))
 					.map((q) -> q.getFileName().toString())
 					.filter((s) -> s.contains(site))
-//					.sorted(Comparator.comparing(COMPARE DATE AND ORDER OF FILE)
 					.collect(Collectors.toList());
-			
+
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 		Collections.sort(list);
-		if(list.size() == 1){
-//			System.out.println("Your file is:");
-//			System.out.println("DEBUG: "+list);
-			t = readObject(list.get(0));
-		} else {
-//			System.out.println("There are more than one file");
-//			list.forEach(i->System.out.println("DEBUG: "+i));
-			String tempStr;
-			if(list.size() < dayCounter) {
-				dayCounter = list.size();
+
+		int startIndex=0;
+		for(int i=0;i<list.size();++i){
+			if (list.get(i).contains(startDate)) {
+				startIndex = i; break;
 			}
-						
-//			for(String tempStr: list) {
-				for(int i=0; i<dayCounter; i++) {
-					tempStr = list.get(i);
-					
-				t = readObject(tempStr);
-				
-				int buyAmount = 0;
-				int sellAmount = 0;
+		}
 
-				if(code.equalsIgnoreCase("ALL")) {
+		if(list.size() < dayCounter) {
+			dayCounter = list.size();
+		}
+		if(list.size() > dayCounter) {
+			dayCounter += startIndex;
+		}
 
-					for(Transaction temp: t) {
+		calculateStats(date, code, siteName, currencyName, dayCounter, 
+				       commissionBuy, comissionSell, list, startIndex);
+		
+	}
 
-						if(TransactionMode.BUY.equals(temp.getMode())) {
 
-							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
-							buyAmount += TransactionAmount;
+	public static void calculateStats(String date, String code, String siteName, String currencyName, int dayCounter,
+			final double commissionBuy, final double comissionSell, List<String> list, int startIndex) {
+		
+		List<Transaction> t;
+		String tempStr;
+		
+		for(int i=startIndex; i<dayCounter; i++) {
+			
+			tempStr = list.get(i);
 
-						}
-						else if(TransactionMode.SELL.equals(temp.getMode())) {
+			t = readObject(tempStr);
 
-							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
-							sellAmount += TransactionAmount;
+			int buyAmount = 0;
+			int sellAmount = 0;
 
-						}	
-					}
 
-				}
-				
+			if(!code.contains("ALL") ) {
+
+
 				for(Transaction temp: t) {
 
 					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
 
+						currencyName = code;
+
 						if(TransactionMode.BUY.equals(temp.getMode())) {
 
 							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
@@ -178,19 +163,49 @@ public class HQ_MoneyService implements HQ{
 					}
 
 				}
-				
-				int profit = sellAmount - buyAmount;
 
-				System.out.println("\nStatistics for site "+siteName+" - Currency " +code+ " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")");
-				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
-				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
-				System.out.println("Profit    \t"+profit+"\tSEK");
 			}
+
+			if(code.contains("ALL") ) {
+
+				currencyName = "ALL";
+
+				for(Transaction temp: t) {
+
+					code = temp.getCurrencyCode();
+
+					if(TransactionMode.BUY.equals(temp.getMode())) {
+
+						int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+						buyAmount += TransactionAmount;
+
+					}
+					else if(TransactionMode.SELL.equals(temp.getMode())) {
+
+						int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+						sellAmount += TransactionAmount;
+
+					}	
+				}
+				code = "ALL";
+
+
+			}
+
+			int profit = sellAmount - buyAmount;
+
+			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
+							   " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
+			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+			System.out.println("Profit    \t"+profit+"\tSEK");
 		}
-	}
-	
-	private static int transactionAmount(String code, double comission, int value) {
 		
+	}
+
+
+	private static int transactionAmount(String code, double comission, int value) {
+
 		//Get the specific rate
 
 		double rate = currencyMap.get(code).doubleValue();
@@ -199,37 +214,37 @@ public class HQ_MoneyService implements HQ{
 		int resultCalc = (int) (value * rateIncComission);
 		return resultCalc;
 	}
-		
+
 	// read data from file using deserialization
 	@SuppressWarnings("unchecked")
 	public static List<Transaction> readObject(String filename){
-		
+
 		List<Transaction> transactionList = null;
-		
+
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))){
 			transactionList = (List<Transaction>)ois.readObject();
-//			System.out.println("\nDEBUG: deserialization reading file - worked!");
+			//			System.out.println("\nDEBUG: deserialization reading file - worked!");
 		}
 		// handle any exception
 		catch(IOException | ClassNotFoundException ioe){
 			//			logger.warning("Exception occurred during deserialization");
 			System.out.println("Exception occurred during deserialization");
 		} 
-		
-//		presentFileContents(transactionList);
-		
+
+		//		presentFileContents(transactionList);
+
 		return (List<Transaction>) transactionList;
 	}
-	
+
 	static void presentFileContents(List<Transaction> transactionList){
-		
-//		System.out.println("\nDEBUG: presenting file content:\n");
-		
+
+		//		System.out.println("\nDEBUG: presenting file content:\n");
+
 		for(int i = 0; i < transactionList.size(); i++) {
 			System.out.println(transactionList.get(i));
 		}
-		
-		
+
+
 	}	
 
 }
