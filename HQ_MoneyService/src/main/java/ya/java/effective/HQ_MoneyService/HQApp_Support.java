@@ -117,7 +117,7 @@ public class HQApp_Support {
 			else {ok= false;}
 
 			if(!ok) {
-				System.out.println(" Sorry!!! Not supported this currency today");
+				System.out.println("\n -- Sorry!!! Not supported this currency today");
 			}
 		}while(!ok);
 

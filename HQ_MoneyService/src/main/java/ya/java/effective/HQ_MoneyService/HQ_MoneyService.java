@@ -68,10 +68,6 @@ public class HQ_MoneyService implements HQ{
 		String siteName = site;
 		String currencyName = null;
 
-		if(site.equalsIgnoreCase(".ser")) {
-			siteName = "ALL";
-		}
-
 		int dayCounter = 0;
 
 		final double commissionBuy = 1.005;
@@ -107,6 +103,8 @@ public class HQ_MoneyService implements HQ{
 		for(int i=0;i<list.size();++i){
 			if (list.get(i).contains(startDate)) {
 				startIndex = i; break;
+			} else {
+				dayCounter = 0;
 			}
 		}
 
@@ -125,13 +123,20 @@ public class HQ_MoneyService implements HQ{
 
 	public static void calculateStats(String date, String code, String siteName, String currencyName, int dayCounter,
 			final double commissionBuy, final double comissionSell, List<String> list, int startIndex) {
-		
+				
 		List<Transaction> t;
 		String tempStr;
+		String north = "NORTH";
+		String center = "CENTER";
+		String south = "SOUTH";
 		
 		for(int i=startIndex; i<dayCounter; i++) {
 			
 			tempStr = list.get(i);
+			
+			if(tempStr.contains(north)) siteName = north;
+			if(tempStr.contains(center)) siteName = center;
+			if(tempStr.contains(south)) siteName = south;
 
 			t = readObject(tempStr);
 
@@ -195,6 +200,11 @@ public class HQ_MoneyService implements HQ{
 			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
 			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
 			System.out.println("Profit    \t"+profit+"\tSEK");
+		}
+		
+		if(dayCounter == 0) {
+			System.out.println(" Sorry!!! Didn't find anything to present");
+
 		}
 		
 	}
