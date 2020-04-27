@@ -159,7 +159,6 @@ public class HQ_MoneyService implements HQ{
 
 				}
 				
-
 				for(Transaction temp: t) {
 
 					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
@@ -180,7 +179,6 @@ public class HQ_MoneyService implements HQ{
 
 				}
 				
-
 				int profit = sellAmount - buyAmount;
 
 				System.out.println("\nStatistics for site "+siteName+" - Currency " +code+ " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")");
@@ -201,8 +199,7 @@ public class HQ_MoneyService implements HQ{
 		int resultCalc = (int) (value * rateIncComission);
 		return resultCalc;
 	}
-	
-	
+		
 	// read data from file using deserialization
 	@SuppressWarnings("unchecked")
 	public static List<Transaction> readObject(String filename){
@@ -234,9 +231,6 @@ public class HQ_MoneyService implements HQ{
 		
 		
 	}	
-
-
-
 
 }
 
