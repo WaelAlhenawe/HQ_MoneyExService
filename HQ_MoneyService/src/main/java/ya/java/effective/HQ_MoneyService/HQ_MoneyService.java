@@ -59,28 +59,14 @@ public class HQ_MoneyService implements HQ{
 	@Override
 	public void profitStatistic(String destination) {
 
-		//		extracted(site, date, code);
-
-
 
 	}
 
 
-	static void searchAndPrintFiles(String site, String date, String startDate, String code) {
+	static void searchFilter(String site, String date, String startDate, String code, String fileDirectory) {
 
-
-
-
-
-		fileProcessAndCalc(site, date, startDate, code);
-
-	}
-
-
-	public static void fileProcessAndCalc(String site, String date, String startDate, String code) {
-
-		String fileDirectory = "";
 		String siteName = site;
+		String currencyName = null;
 
 		if(site.equalsIgnoreCase(".ser")) {
 			siteName = "ALL";
@@ -101,7 +87,6 @@ public class HQ_MoneyService implements HQ{
 			dayCounter = 30;
 		}
 
-		List<Transaction> t = new ArrayList<Transaction>();
 		List<String> list = null;
 
 		//	    Open file by part of its name - ie SEARCH
@@ -109,7 +94,6 @@ public class HQ_MoneyService implements HQ{
 			list = Files.walk(Paths.get(fileDirectory))
 					.map((q) -> q.getFileName().toString())
 					.filter((s) -> s.contains(site))
-					//					.sorted(Comparator.comparing(COMPARE DATE AND ORDER OF FILE)
 					.collect(Collectors.toList());
 
 		} catch (IOException e1) {
@@ -126,57 +110,42 @@ public class HQ_MoneyService implements HQ{
 			}
 		}
 
-		if(list.size() == 1){
-			//			System.out.println("Your file is:");
-			//			System.out.println("DEBUG: "+list);
-			t = readObject(list.get(0));
-		} else {
-			//			System.out.println("There are more than one file");
-			//			list.forEach(i->System.out.println("DEBUG: "+i));
+		if(list.size() < dayCounter) {
+			dayCounter = list.size();
+		}
+		if(list.size() > dayCounter) {
+			dayCounter += startIndex;
+		}
 
-			String tempStr;
-			if(list.size() < dayCounter) {
-				dayCounter = list.size();
-			}
-			if(list.size() > dayCounter) {
-				dayCounter += startIndex;
-			}
+		calculateStats(date, code, siteName, currencyName, dayCounter, 
+				       commissionBuy, comissionSell, list, startIndex);
+		
+	}
 
-			for(int i=startIndex; i<dayCounter; i++) {
-				tempStr = list.get(i);
 
-				t = readObject(tempStr);
+	public static void calculateStats(String date, String code, String siteName, String currencyName, int dayCounter,
+			final double commissionBuy, final double comissionSell, List<String> list, int startIndex) {
+		
+		List<Transaction> t;
+		String tempStr;
+		
+		for(int i=startIndex; i<dayCounter; i++) {
+			
+			tempStr = list.get(i);
 
-				int buyAmount = 0;
-				int sellAmount = 0;
+			t = readObject(tempStr);
 
-				if(code.equalsIgnoreCase("ALL")) {
+			int buyAmount = 0;
+			int sellAmount = 0;
 
-					for(Transaction temp: t) {
-
-						code = temp.getCurrencyCode();
-						
-						if(TransactionMode.BUY.equals(temp.getMode())) {
-
-							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
-							buyAmount += TransactionAmount;
-
-						}
-						else if(TransactionMode.SELL.equals(temp.getMode())) {
-
-							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
-							sellAmount += TransactionAmount;
-
-						}	
-					}
-
-				}
-
+			if(!code.contains("ALL") ) {
 
 				for(Transaction temp: t) {
 
 					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
 
+						currencyName = code;
+
 						if(TransactionMode.BUY.equals(temp.getMode())) {
 
 							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
@@ -192,17 +161,44 @@ public class HQ_MoneyService implements HQ{
 					}
 
 				}
-
-
-				int profit = sellAmount - buyAmount;
-
-				System.out.println("\nStatistics for site "+siteName+" - Currency " +code+ " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")");
-				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
-				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
-				System.out.println("Profit    \t"+profit+"\tSEK");
 			}
+
+			if(code.contains("ALL") ) {
+
+				currencyName = "ALL";
+
+				for(Transaction temp: t) {
+
+					code = temp.getCurrencyCode();
+
+					if(TransactionMode.BUY.equals(temp.getMode())) {
+
+						int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+						buyAmount += TransactionAmount;
+
+					}
+					else if(TransactionMode.SELL.equals(temp.getMode())) {
+
+						int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+						sellAmount += TransactionAmount;
+
+					}	
+				}
+				code = "ALL";
+
+			}
+
+			int profit = sellAmount - buyAmount;
+
+			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
+							   " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
+			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+			System.out.println("Profit    \t"+profit+"\tSEK");
 		}
+		
 	}
+
 
 	private static int transactionAmount(String code, double comission, int value) {
 

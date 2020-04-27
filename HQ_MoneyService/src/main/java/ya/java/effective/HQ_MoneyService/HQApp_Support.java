@@ -109,7 +109,8 @@ public class HQApp_Support {
 			System.out.print("ALL");
 			System.out.print("\nEnter the choice:\t");
 			Currency = input.next();
-
+			Currency = Currency.toUpperCase();
+			
 			if(currencyMap.containsKey(Currency) || Currency.equalsIgnoreCase("ALL")) {
 				ok = true;
 			}
@@ -122,6 +123,34 @@ public class HQApp_Support {
 
 
 		return Currency;
+
+	}
+	
+	static String filePath() {
+
+		String path = "";
+		boolean ok;
+		do {
+
+			System.out.println("\nProvide path where root folder of Site Report(s) are located");
+			System.out.print("\n** IF THEY ARE LOCATED IN PROJECT ROOT FOLDER - Just press [Enter] **\n");
+			System.out.print("\nEnter path search path (location):\t");
+			path = input.next();
+
+			if(path.equalsIgnoreCase("")) {
+				ok = true;
+			}
+			else {
+				ok= false;
+				}
+
+			if(!ok) {
+				System.out.println(" Sorry!!! We only support if site reports are located in project root folder at the moment.");
+			}
+		}while(!ok);
+
+
+		return path;
 
 	}
 
