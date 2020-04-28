@@ -1,17 +1,23 @@
 
 package ya.java.effective.HQ_MoneyService;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import affix.java.effective.moneyservice.Transaction;
 import affix.java.effective.moneyservice.TransactionMode;
@@ -23,7 +29,7 @@ import affix.java.effective.moneyservice.TransactionMode;
 public class HQ_MoneyService implements HQ{
 
 	@SuppressWarnings("unused")
-	private Map<String, List <Transaction>> result;
+	static Map<String, List <Transaction>> result = new TreeMap<>(); 
 	static Map<String, Double> currencyMap = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt").orElse(Collections.emptyMap());
 
 	// Set up a logger
@@ -67,10 +73,9 @@ public class HQ_MoneyService implements HQ{
 
 		String siteName = site;
 		String currencyName = null;
-
-		if(site.equalsIgnoreCase(".ser")) {
-			siteName = "ALL";
-		}
+		boolean northIsPresent = false;
+		boolean centerIsPresent = false;
+		boolean southIsPresent = false;
 
 		int dayCounter = 0;
 
@@ -88,12 +93,15 @@ public class HQ_MoneyService implements HQ{
 		}
 
 		List<String> list = null;
+		List<String> listSouth = null;
+		List<String> listNorth = null;
+		List<String> listCenter = null;
 
-		//	    Open file by part of its name - ie SEARCH
+		List<String> fileList = null;
+
 		try {
-			list = Files.walk(Paths.get(fileDirectory))
+			fileList = Files.walk(Paths.get(fileDirectory))
 					.map((q) -> q.getFileName().toString())
-					.filter((s) -> s.contains(site))
 					.collect(Collectors.toList());
 
 		} catch (IOException e1) {
@@ -101,53 +109,170 @@ public class HQ_MoneyService implements HQ{
 			e1.printStackTrace();
 		}
 
-		Collections.sort(list);
+		Collections.sort(fileList);
 
-		int startIndex=0;
-		for(int i=0;i<list.size();++i){
-			if (list.get(i).contains(startDate)) {
-				startIndex = i; break;
-			}
+		for(String file : fileList) {
+			if(file.contains("SOUTH") ) southIsPresent = true;
+			if(file.contains("CENTER") ) centerIsPresent = true;
+			if(file.contains("NORTH") ) northIsPresent = true;
+
+			//            System.out.println("DEBUG: " +file);
 		}
 
+		if(southIsPresent) {
+			//	    Open file by part of its name - ie SEARCH
+			try {
+				listSouth = Files.walk(Paths.get(fileDirectory))
+						.map((q) -> q.getFileName().toString())
+						.filter((s) -> s.contains("SOUTH"))
+						.collect(Collectors.toList());
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(centerIsPresent) {
+			//	    Open file by part of its name - ie SEARCH
+			try {
+				listCenter = Files.walk(Paths.get(fileDirectory))
+						.map((q) -> q.getFileName().toString())
+						.filter((s) -> s.contains("CENTER"))
+						.collect(Collectors.toList());
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(northIsPresent) {
+			//	    Open file by part of its name - ie SEARCH
+			try {
+				listNorth = Files.walk(Paths.get(fileDirectory))
+						.map((q) -> q.getFileName().toString())
+						.filter((s) -> s.contains("NORTH"))
+						.collect(Collectors.toList());
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		}
+		
+		
+		if(dayCounter == 1) {
+			list = Stream.of(listSouth, listCenter, listNorth)
+					.flatMap(x -> x.stream())
+					.filter((s) -> s.contains(startDate))
+					.collect(Collectors.toList());
+		}
+		if(dayCounter > 1 && siteName != "ALL") {
+			list = Stream.of(listSouth, listCenter, listNorth)
+					.flatMap(x -> x.stream())
+					.filter((s) -> s.contains(site))
+					.collect(Collectors.toList());
+		}
+		if(dayCounter > 1 && site == ".ser") {
+			list = Stream.of(listSouth, listCenter, listNorth)
+					.flatMap(x -> x.stream())
+					.filter((s) -> s.contains(site))
+					.collect(Collectors.toList());
+		}
+		
+
+		Collections.sort(list);
+		
 		if(list.size() < dayCounter) {
 			dayCounter = list.size();
 		}
-		if(list.size() > dayCounter) {
-			dayCounter += startIndex;
+
+		for(int i=0; i<list.size(); i++) {
+
+			String tempStr = list.get(i);
+			String tmpSiteName = "";
+			if(tempStr.contains("NORTH")) tmpSiteName = "NORTH";
+			if(tempStr.contains("CENTER")) tmpSiteName = "CENTER";
+			if(tempStr.contains("SOUTH")) tmpSiteName = "SOUTH";
+
+			List<Transaction> ts = readObject(tempStr);
+			result.putIfAbsent(tmpSiteName, ts);
 		}
 
-		calculateStats(date, code, siteName, currencyName, dayCounter, 
-				       commissionBuy, comissionSell, list, startIndex);
+
 		
+		calculateStats(date, code, siteName, currencyName, 
+				commissionBuy, comissionSell, list, dayCounter);
+
 	}
 
 
-	public static void calculateStats(String date, String code, String siteName, String currencyName, int dayCounter,
-			final double commissionBuy, final double comissionSell, List<String> list, int startIndex) {
+	public static void calculateStats(String date, String code, String siteName, String currencyName,
+			final double commissionBuy, final double comissionSell, List<String> list, int dayCounter) {
+
+
+		for(int i=0; i<dayCounter; i++) {
 		
-		List<Transaction> t;
-		String tempStr;
-		
-		for(int i=startIndex; i<dayCounter; i++) {
-			
-			tempStr = list.get(i);
+		for(String key: result.keySet()){
+//			for(Transaction temp: result.get(key)) {
+				
+				
+//				System.out.println("DEBUG: " +temp);
+				
+				int buyAmount = 0;
+				int sellAmount = 0;
+				LocalDateTime timeStamp = null; 
+				
+				if(!code.contains("ALL") ) {
 
-			t = readObject(tempStr);
+					for(Transaction temp: result.get(key)) {
 
-			int buyAmount = 0;
-			int sellAmount = 0;
+						timeStamp = temp.getTimeStamp();						
 
+<<<<<<< HEAD
 
 			if(!code.contains("ALL") ) {
 
 
 				for(Transaction temp: t) {
+=======
+						if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
 
-					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
+							currencyName = code;
+>>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
 
-						currencyName = code;
+							if(TransactionMode.BUY.equals(temp.getMode())) {
 
+								int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+								buyAmount += TransactionAmount;
+
+							}
+							else if(TransactionMode.SELL.equals(temp.getMode())) {
+
+								int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+								sellAmount += TransactionAmount;
+
+							}	
+						}
+
+					}
+				}
+<<<<<<< HEAD
+
+			}
+=======
+>>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
+
+				if(code.contains("ALL") ) {
+
+					currencyName = "ALL";
+
+					for(Transaction temp: result.get(key)) {
+
+						code = temp.getCurrencyCode();
+
+						timeStamp = temp.getTimeStamp();
+						
 						if(TransactionMode.BUY.equals(temp.getMode())) {
 
 							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
@@ -159,48 +284,109 @@ public class HQ_MoneyService implements HQ{
 							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
 							sellAmount += TransactionAmount;
 
+<<<<<<< HEAD
+
+			}
+=======
 						}	
 					}
+					code = "ALL";
+>>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
 
 				}
 
-			}
-
-			if(code.contains("ALL") ) {
-
-				currencyName = "ALL";
-
-				for(Transaction temp: t) {
-
-					code = temp.getCurrencyCode();
-
-					if(TransactionMode.BUY.equals(temp.getMode())) {
-
-						int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
-						buyAmount += TransactionAmount;
-
-					}
-					else if(TransactionMode.SELL.equals(temp.getMode())) {
-
-						int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
-						sellAmount += TransactionAmount;
-
-					}	
-				}
-				code = "ALL";
-
-
-			}
-
-			int profit = sellAmount - buyAmount;
-
-			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
-							   " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
-			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
-			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
-			System.out.println("Profit    \t"+profit+"\tSEK");
+				int profit = sellAmount - buyAmount;
+			
+				System.out.println("\nStatistics for site "+key+" - Currency " +currencyName+ 
+						" - DateTime "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
+													.format(timeStamp)+")" );
+				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+				System.out.println("Profit    \t"+profit+"\tSEK");
+			} // "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
 		}
 		
+//		for(int i=0; i<list.size(); i++) {
+//
+//			tempStr = list.get(i);
+//
+//			if(tempStr.contains(north)) siteName = north;
+//			if(tempStr.contains(center)) siteName = center;
+//			if(tempStr.contains(south)) siteName = south;
+//
+//			t = readObject(tempStr);
+//			result.putIfAbsent(siteName, t);
+//			
+//			int buyAmount = 0;
+//			int sellAmount = 0;
+//
+//			if(!code.contains("ALL") ) {
+//
+//				for(Transaction temp: t) {
+//
+//					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
+//
+//						currencyName = code;
+//
+//						if(TransactionMode.BUY.equals(temp.getMode())) {
+//
+//							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+//							buyAmount += TransactionAmount;
+//
+//						}
+//						else if(TransactionMode.SELL.equals(temp.getMode())) {
+//
+//							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+//							sellAmount += TransactionAmount;
+//
+//						}	
+//					}
+//
+//				}
+//			}
+//
+//			if(code.contains("ALL") ) {
+//
+//				currencyName = "ALL";
+//
+//				for(Transaction temp: t) {
+//
+//					code = temp.getCurrencyCode();
+//
+//					if(TransactionMode.BUY.equals(temp.getMode())) {
+//
+//						int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+//						buyAmount += TransactionAmount;
+//
+//					}
+//					else if(TransactionMode.SELL.equals(temp.getMode())) {
+//
+//						int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+//						sellAmount += TransactionAmount;
+//
+//					}	
+//				}
+//				code = "ALL";
+//
+//			}
+//
+//			int profit = sellAmount - buyAmount;
+//
+//			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
+//					" - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
+//			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+//			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+//			System.out.println("Profit    \t"+profit+"\tSEK");
+//		}
+
+//		if(dayCounter == 0) {
+//			System.out.println(" Sorry!!! Didn't find anything to present");
+//
+//		}
+
+
+	
+	
 	}
 
 
@@ -247,6 +433,10 @@ public class HQ_MoneyService implements HQ{
 
 	}	
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
 }
 
 

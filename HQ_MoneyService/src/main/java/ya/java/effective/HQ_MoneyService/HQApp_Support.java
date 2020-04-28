@@ -44,7 +44,7 @@ public class HQApp_Support {
 			site = center;
 		} if(choice == 3) {
 			site = south;
-		} else {
+		} if(choice == 4) {
 			site = ".ser";
 		}
 				
@@ -117,7 +117,7 @@ public class HQApp_Support {
 			else {ok= false;}
 
 			if(!ok) {
-				System.out.println(" Sorry!!! Not supported this currency today");
+				System.out.println("\n -- Sorry!!! Not supported this currency today");
 			}
 		}while(!ok);
 
