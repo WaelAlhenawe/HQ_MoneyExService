@@ -134,7 +134,7 @@ public class HQApp_Support {
 
 			System.out.println("\nProvide path where root folder of Site Report(s) are located");
 			System.out.print("\n** IF THEY ARE LOCATED IN PROJECT ROOT FOLDER - Just press [Enter] **\n");
-			System.out.print("\nEnter path search path (location):\t");
+			System.out.print("\nEnter search path (location):\t");
 			path = input.next();
 
 			if(path.equalsIgnoreCase("")) {

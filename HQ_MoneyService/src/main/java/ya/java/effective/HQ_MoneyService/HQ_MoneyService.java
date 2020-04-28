@@ -167,7 +167,7 @@ public class HQ_MoneyService implements HQ{
 					.filter((s) -> s.contains(startDate))
 					.collect(Collectors.toList());
 		}
-		if(dayCounter > 1 && siteName != "ALL") {
+		if(dayCounter > 1 && site != ".ser") {
 			list = Stream.of(listSouth, listCenter, listNorth)
 					.flatMap(x -> x.stream())
 					.filter((s) -> s.contains(site))
@@ -211,7 +211,7 @@ public class HQ_MoneyService implements HQ{
 			final double commissionBuy, final double comissionSell, List<String> list, int dayCounter) {
 
 
-		for(int i=0; i<dayCounter; i++) {
+//		for(int i=0; i<dayCounter; i++) {
 		
 		for(String key: result.keySet()){
 //			for(Transaction temp: result.get(key)) {
@@ -284,13 +284,13 @@ public class HQ_MoneyService implements HQ{
 				int profit = sellAmount - buyAmount;
 			
 				System.out.println("\nStatistics for site "+key+" - Currency " +currencyName+ 
-						" - DateTime "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
+						" - Date "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
 													.format(timeStamp)+")" );
 				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
 				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
 				System.out.println("Profit    \t"+profit+"\tSEK");
 			} // "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
-		}
+//		}
 		
 //		for(int i=0; i<list.size(); i++) {
 //
