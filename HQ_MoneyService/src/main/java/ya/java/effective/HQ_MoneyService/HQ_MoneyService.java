@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,7 +27,7 @@ import affix.java.effective.moneyservice.TransactionMode;
 public class HQ_MoneyService implements HQ{
 
 	@SuppressWarnings("unused")
-	static Map<String, List <Transaction>> result;
+	static Map<String, List <Transaction>> result = new TreeMap<>(); 
 	static Map<String, Double> currencyMap = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt").orElse(Collections.emptyMap());
 
 	// Set up a logger
@@ -191,6 +192,9 @@ public class HQ_MoneyService implements HQ{
 	public static void calculateStats(String date, String code, String siteName, String currencyName,
 			final double commissionBuy, final double comissionSell, List<String> list) {
 
+		Map<String, List <Transaction>> rTmp = new TreeMap<>(); 
+
+		
 		List<Transaction> t;
 		String tempStr;
 		String north = "NORTH";
@@ -206,9 +210,8 @@ public class HQ_MoneyService implements HQ{
 			if(tempStr.contains(south)) siteName = south;
 
 			t = readObject(tempStr);
-
-//			result.putIfAbsent(siteName, t);
-
+			result.putIfAbsent(siteName, t);
+			
 			int buyAmount = 0;
 			int sellAmount = 0;
 
@@ -276,6 +279,12 @@ public class HQ_MoneyService implements HQ{
 //
 //		}
 
+
+		// Java 8
+		Stream.of(result.keySet().toString())
+				.forEach(System.out::println);
+	
+	
 	}
 
 
