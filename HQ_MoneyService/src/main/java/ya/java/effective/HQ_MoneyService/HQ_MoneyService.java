@@ -14,6 +14,8 @@ import java.util.TreeMap;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -165,64 +167,99 @@ public class HQ_MoneyService implements HQ{
 					.filter((s) -> s.contains(startDate))
 					.collect(Collectors.toList());
 		}
-		if(dayCounter > 1) {
+		if(dayCounter > 1 && siteName != "ALL") {
 			list = Stream.of(listSouth, listCenter, listNorth)
 					.flatMap(x -> x.stream())
+					.filter((s) -> s.contains(site))
 					.collect(Collectors.toList());
 		}
-
-
+		if(dayCounter > 1 && site == ".ser") {
+			list = Stream.of(listSouth, listCenter, listNorth)
+					.flatMap(x -> x.stream())
+					.filter((s) -> s.contains(site))
+					.collect(Collectors.toList());
+		}
+		
 
 		Collections.sort(list);
-
-
+		
 		if(list.size() < dayCounter) {
 			dayCounter = list.size();
 		}
-//		if(list.size() > dayCounter) {
-//			dayCounter += startIndex;
-//		}
 
+		for(int i=0; i<list.size(); i++) {
+
+			String tempStr = list.get(i);
+			String tmpSiteName = "";
+			if(tempStr.contains("NORTH")) tmpSiteName = "NORTH";
+			if(tempStr.contains("CENTER")) tmpSiteName = "CENTER";
+			if(tempStr.contains("SOUTH")) tmpSiteName = "SOUTH";
+
+			List<Transaction> ts = readObject(tempStr);
+			result.putIfAbsent(tmpSiteName, ts);
+		}
+
+
+		
 		calculateStats(date, code, siteName, currencyName, 
-				commissionBuy, comissionSell, list);
+				commissionBuy, comissionSell, list, dayCounter);
 
 	}
 
 
 	public static void calculateStats(String date, String code, String siteName, String currencyName,
-			final double commissionBuy, final double comissionSell, List<String> list) {
+			final double commissionBuy, final double comissionSell, List<String> list, int dayCounter) {
 
-		Map<String, List <Transaction>> rTmp = new TreeMap<>(); 
 
+		for(int i=0; i<dayCounter; i++) {
 		
-		List<Transaction> t;
-		String tempStr;
-		String north = "NORTH";
-		String center = "CENTER";
-		String south = "SOUTH";
+		for(String key: result.keySet()){
+//			for(Transaction temp: result.get(key)) {
+				
+				
+//				System.out.println("DEBUG: " +temp);
+				
+				int buyAmount = 0;
+				int sellAmount = 0;
+				LocalDateTime timeStamp = null; 
+				
+				if(!code.contains("ALL") ) {
 
-		for(int i=0; i<list.size(); i++) {
+					for(Transaction temp: result.get(key)) {
 
-			tempStr = list.get(i);
+						timeStamp = temp.getTimeStamp();						
 
-			if(tempStr.contains(north)) siteName = north;
-			if(tempStr.contains(center)) siteName = center;
-			if(tempStr.contains(south)) siteName = south;
+						if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
 
-			t = readObject(tempStr);
-			result.putIfAbsent(siteName, t);
-			
-			int buyAmount = 0;
-			int sellAmount = 0;
+							currencyName = code;
 
-			if(!code.contains("ALL") ) {
+							if(TransactionMode.BUY.equals(temp.getMode())) {
 
-				for(Transaction temp: t) {
+								int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+								buyAmount += TransactionAmount;
 
-					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
+							}
+							else if(TransactionMode.SELL.equals(temp.getMode())) {
 
-						currencyName = code;
+								int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+								sellAmount += TransactionAmount;
 
+							}	
+						}
+
+					}
+				}
+
+				if(code.contains("ALL") ) {
+
+					currencyName = "ALL";
+
+					for(Transaction temp: result.get(key)) {
+
+						code = temp.getCurrencyCode();
+
+						timeStamp = temp.getTimeStamp();
+						
 						if(TransactionMode.BUY.equals(temp.getMode())) {
 
 							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
@@ -236,43 +273,93 @@ public class HQ_MoneyService implements HQ{
 
 						}	
 					}
+					code = "ALL";
 
 				}
-			}
 
-			if(code.contains("ALL") ) {
-
-				currencyName = "ALL";
-
-				for(Transaction temp: t) {
-
-					code = temp.getCurrencyCode();
-
-					if(TransactionMode.BUY.equals(temp.getMode())) {
-
-						int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
-						buyAmount += TransactionAmount;
-
-					}
-					else if(TransactionMode.SELL.equals(temp.getMode())) {
-
-						int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
-						sellAmount += TransactionAmount;
-
-					}	
-				}
-				code = "ALL";
-
-			}
-
-			int profit = sellAmount - buyAmount;
-
-			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
-					" - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
-			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
-			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
-			System.out.println("Profit    \t"+profit+"\tSEK");
+				int profit = sellAmount - buyAmount;
+			
+				System.out.println("\nStatistics for site "+key+" - Currency " +currencyName+ 
+						" - DateTime "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
+													.format(timeStamp)+")" );
+				System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+				System.out.println("Profit    \t"+profit+"\tSEK");
+			} // "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
 		}
+		
+//		for(int i=0; i<list.size(); i++) {
+//
+//			tempStr = list.get(i);
+//
+//			if(tempStr.contains(north)) siteName = north;
+//			if(tempStr.contains(center)) siteName = center;
+//			if(tempStr.contains(south)) siteName = south;
+//
+//			t = readObject(tempStr);
+//			result.putIfAbsent(siteName, t);
+//			
+//			int buyAmount = 0;
+//			int sellAmount = 0;
+//
+//			if(!code.contains("ALL") ) {
+//
+//				for(Transaction temp: t) {
+//
+//					if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
+//
+//						currencyName = code;
+//
+//						if(TransactionMode.BUY.equals(temp.getMode())) {
+//
+//							int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+//							buyAmount += TransactionAmount;
+//
+//						}
+//						else if(TransactionMode.SELL.equals(temp.getMode())) {
+//
+//							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+//							sellAmount += TransactionAmount;
+//
+//						}	
+//					}
+//
+//				}
+//			}
+//
+//			if(code.contains("ALL") ) {
+//
+//				currencyName = "ALL";
+//
+//				for(Transaction temp: t) {
+//
+//					code = temp.getCurrencyCode();
+//
+//					if(TransactionMode.BUY.equals(temp.getMode())) {
+//
+//						int TransactionAmount =  transactionAmount(code,commissionBuy,temp.getAmount())  ;
+//						buyAmount += TransactionAmount;
+//
+//					}
+//					else if(TransactionMode.SELL.equals(temp.getMode())) {
+//
+//						int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
+//						sellAmount += TransactionAmount;
+//
+//					}	
+//				}
+//				code = "ALL";
+//
+//			}
+//
+//			int profit = sellAmount - buyAmount;
+//
+//			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
+//					" - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
+//			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+//			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+//			System.out.println("Profit    \t"+profit+"\tSEK");
+//		}
 
 //		if(dayCounter == 0) {
 //			System.out.println(" Sorry!!! Didn't find anything to present");
@@ -280,9 +367,6 @@ public class HQ_MoneyService implements HQ{
 //		}
 
 
-		// Java 8
-		Stream.of(result.keySet().toString())
-				.forEach(System.out::println);
 	
 	
 	}
@@ -331,21 +415,6 @@ public class HQ_MoneyService implements HQ{
 
 
 	}	
-
-
-
-
-
-	static File[] getFileList(String dirPath) {
-		File dir = new File(dirPath);   
-
-		File[] fileList = dir.listFiles(new FilenameFilter() {
-			public boolean accept(File dir, String name) {
-				return name.endsWith(".ser");
-			}
-		});
-		return fileList;
-	}
 
 
 }
