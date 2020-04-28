@@ -1,7 +1,9 @@
 
 package ya.java.effective.HQ_MoneyService;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import affix.java.effective.moneyservice.Transaction;
 import affix.java.effective.moneyservice.TransactionMode;
@@ -23,7 +26,7 @@ import affix.java.effective.moneyservice.TransactionMode;
 public class HQ_MoneyService implements HQ{
 
 	@SuppressWarnings("unused")
-	private Map<String, List <Transaction>> result;
+	static Map<String, List <Transaction>> result;
 	static Map<String, Double> currencyMap = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt").orElse(Collections.emptyMap());
 
 	// Set up a logger
@@ -67,6 +70,9 @@ public class HQ_MoneyService implements HQ{
 
 		String siteName = site;
 		String currencyName = null;
+		boolean northIsPresent = false;
+		boolean centerIsPresent = false;
+		boolean southIsPresent = false;
 
 		int dayCounter = 0;
 
@@ -84,12 +90,15 @@ public class HQ_MoneyService implements HQ{
 		}
 
 		List<String> list = null;
+		List<String> listSouth = null;
+		List<String> listNorth = null;
+		List<String> listCenter = null;
 
-		//	    Open file by part of its name - ie SEARCH
+		List<String> fileList = null;
+
 		try {
-			list = Files.walk(Paths.get(fileDirectory))
+			fileList = Files.walk(Paths.get(fileDirectory))
 					.map((q) -> q.getFileName().toString())
-					.filter((s) -> s.contains(site))
 					.collect(Collectors.toList());
 
 		} catch (IOException e1) {
@@ -97,48 +106,108 @@ public class HQ_MoneyService implements HQ{
 			e1.printStackTrace();
 		}
 
-		Collections.sort(list);
+		Collections.sort(fileList);
 
-		int startIndex=0;
-		for(int i=0;i<list.size();++i){
-			if (list.get(i).contains(startDate)) {
-				startIndex = i; break;
-			} else {
-				dayCounter = 0;
+		for(String file : fileList) {
+			if(file.contains("SOUTH") ) southIsPresent = true;
+			if(file.contains("CENTER") ) centerIsPresent = true;
+			if(file.contains("NORTH") ) northIsPresent = true;
+
+			//            System.out.println("DEBUG: " +file);
+		}
+
+		if(southIsPresent) {
+			//	    Open file by part of its name - ie SEARCH
+			try {
+				listSouth = Files.walk(Paths.get(fileDirectory))
+						.map((q) -> q.getFileName().toString())
+						.filter((s) -> s.contains("SOUTH"))
+						.collect(Collectors.toList());
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
+		if(centerIsPresent) {
+			//	    Open file by part of its name - ie SEARCH
+			try {
+				listCenter = Files.walk(Paths.get(fileDirectory))
+						.map((q) -> q.getFileName().toString())
+						.filter((s) -> s.contains("CENTER"))
+						.collect(Collectors.toList());
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(northIsPresent) {
+			//	    Open file by part of its name - ie SEARCH
+			try {
+				listNorth = Files.walk(Paths.get(fileDirectory))
+						.map((q) -> q.getFileName().toString())
+						.filter((s) -> s.contains("NORTH"))
+						.collect(Collectors.toList());
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		}
+		
+		
+		if(dayCounter == 1) {
+			list = Stream.of(listSouth, listCenter, listNorth)
+					.flatMap(x -> x.stream())
+					.filter((s) -> s.contains(startDate))
+					.collect(Collectors.toList());
+		}
+		if(dayCounter > 1) {
+			list = Stream.of(listSouth, listCenter, listNorth)
+					.flatMap(x -> x.stream())
+					.collect(Collectors.toList());
+		}
+
+
+
+		Collections.sort(list);
+
 
 		if(list.size() < dayCounter) {
 			dayCounter = list.size();
 		}
-		if(list.size() > dayCounter) {
-			dayCounter += startIndex;
-		}
+//		if(list.size() > dayCounter) {
+//			dayCounter += startIndex;
+//		}
 
-		calculateStats(date, code, siteName, currencyName, dayCounter, 
-				       commissionBuy, comissionSell, list, startIndex);
-		
+		calculateStats(date, code, siteName, currencyName, 
+				commissionBuy, comissionSell, list);
+
 	}
 
 
-	public static void calculateStats(String date, String code, String siteName, String currencyName, int dayCounter,
-			final double commissionBuy, final double comissionSell, List<String> list, int startIndex) {
-				
+	public static void calculateStats(String date, String code, String siteName, String currencyName,
+			final double commissionBuy, final double comissionSell, List<String> list) {
+
 		List<Transaction> t;
 		String tempStr;
 		String north = "NORTH";
 		String center = "CENTER";
 		String south = "SOUTH";
-		
-		for(int i=startIndex; i<dayCounter; i++) {
-			
+
+		for(int i=0; i<list.size(); i++) {
+
 			tempStr = list.get(i);
-			
+
 			if(tempStr.contains(north)) siteName = north;
 			if(tempStr.contains(center)) siteName = center;
 			if(tempStr.contains(south)) siteName = south;
 
 			t = readObject(tempStr);
+
+//			result.putIfAbsent(siteName, t);
 
 			int buyAmount = 0;
 			int sellAmount = 0;
@@ -196,17 +265,17 @@ public class HQ_MoneyService implements HQ{
 			int profit = sellAmount - buyAmount;
 
 			System.out.println("\nStatistics for site "+siteName+" - Currency " +currencyName+ 
-							   " - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
+					" - Date "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")" );
 			System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
 			System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
 			System.out.println("Profit    \t"+profit+"\tSEK");
 		}
-		
-		if(dayCounter == 0) {
-			System.out.println(" Sorry!!! Didn't find anything to present");
 
-		}
-		
+//		if(dayCounter == 0) {
+//			System.out.println(" Sorry!!! Didn't find anything to present");
+//
+//		}
+
 	}
 
 
@@ -255,6 +324,19 @@ public class HQ_MoneyService implements HQ{
 	}	
 
 
+
+
+
+	static File[] getFileList(String dirPath) {
+		File dir = new File(dirPath);   
+
+		File[] fileList = dir.listFiles(new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".ser");
+			}
+		});
+		return fileList;
+	}
 
 
 }
