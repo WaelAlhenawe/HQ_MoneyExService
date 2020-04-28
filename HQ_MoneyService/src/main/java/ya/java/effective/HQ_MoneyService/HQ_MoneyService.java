@@ -229,17 +229,10 @@ public class HQ_MoneyService implements HQ{
 
 						timeStamp = temp.getTimeStamp();						
 
-<<<<<<< HEAD
-
-			if(!code.contains("ALL") ) {
-
-
-				for(Transaction temp: t) {
-=======
 						if(code.equalsIgnoreCase(temp.getCurrencyCode())) {
 
 							currencyName = code;
->>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
+
 
 							if(TransactionMode.BUY.equals(temp.getMode())) {
 
@@ -257,11 +250,7 @@ public class HQ_MoneyService implements HQ{
 
 					}
 				}
-<<<<<<< HEAD
 
-			}
-=======
->>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
 
 				if(code.contains("ALL") ) {
 
@@ -284,14 +273,11 @@ public class HQ_MoneyService implements HQ{
 							int TransactionAmount =  transactionAmount(code,comissionSell,temp.getAmount())  ;
 							sellAmount += TransactionAmount;
 
-<<<<<<< HEAD
 
-			}
-=======
 						}	
 					}
 					code = "ALL";
->>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
+
 
 				}
 
@@ -433,10 +419,7 @@ public class HQ_MoneyService implements HQ{
 
 	}	
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 02e8bfa0df81d9556ad3826fef8bfe3edaf6b106
 }
 
 
