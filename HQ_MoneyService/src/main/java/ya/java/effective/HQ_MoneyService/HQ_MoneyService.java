@@ -211,7 +211,7 @@ public class HQ_MoneyService implements HQ{
 			final double commissionBuy, final double comissionSell, List<String> list, int dayCounter) {
 
 
-		for(int i=0; i<dayCounter; i++) {
+//		for(int i=0; i<dayCounter; i++) {
 		
 		for(String key: result.keySet()){
 //			for(Transaction temp: result.get(key)) {
@@ -286,7 +286,7 @@ public class HQ_MoneyService implements HQ{
 				System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
 				System.out.println("Profit    \t"+profit+"\tSEK");
 			} // "+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
-		}
+//		}
 		
 //		for(int i=0; i<list.size(); i++) {
 //
