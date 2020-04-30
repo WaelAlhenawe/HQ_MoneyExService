@@ -127,7 +127,7 @@ public final class Transaction implements Comparable<Transaction>, java.io.Seria
 			
 			return Objects.compare(this, that, Comparator.comparing(Transaction::getId)
 				        	.thenComparing(Transaction::getTimeStamp)
-				        	.thenComparing(Transaction::getCurrencyCode)
+				        	
 	                );
 			
 		}
