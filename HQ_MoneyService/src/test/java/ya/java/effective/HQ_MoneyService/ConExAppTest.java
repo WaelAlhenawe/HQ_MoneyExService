@@ -27,10 +27,10 @@ public class ConExAppTest {
 
 		Function<String, String> part
 		= ConExApp.projectConfigParsing("test tester", 2);
-
+    
 		String test = "";
 		test = part.toString();
-
+		
 		boolean t = true;
 		if(test.isEmpty()) {
 			t = false;
