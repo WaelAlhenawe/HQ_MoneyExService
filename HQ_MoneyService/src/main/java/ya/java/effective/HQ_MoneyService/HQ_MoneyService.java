@@ -85,9 +85,8 @@ public class HQ_MoneyService implements HQ{
 	}
 
 	/**
-	 * @param sepearator
-	 * @param partNo
-	 * @return Function with currency code as a key for the map
+	 * This method is a keyMaper for building the the filtered Map.
+	 * @return Function<String, LocalDate> with the date of this Transaction.
 	 */
 	private static Function<String, LocalDate> keyMapper() {
 
@@ -103,9 +102,10 @@ public class HQ_MoneyService implements HQ{
 	}
 
 	/**
-	 * @param sepearator
-	 * @param partNo
-	 * @return
+	 * This method is a valueMaper for building the filtered Map.
+	 * @param currencyCode to filter the stream based on Currency code   
+	 * @return Function<String, List<Transaction>> list will hold all 
+	 * the filtered Transactions by reading the String file name 
 	 */
 	private static Function<String, List<Transaction>> valueMapper(String currencyCode) {
 
@@ -126,21 +126,19 @@ public class HQ_MoneyService implements HQ{
 		return valueMapper;}
 
 	/**
-	 * This method is used to print a report presenting current currencies and their amount
-	 * for an implementation of the MoneyService interface, i.e. a Site
-	 * @param destination a String defining where to write the report, i.e. Console/Textfile
+	 * This method is used to print Transaction statistic by printing the Map of filtered values 
 	 */
 	@Override
-	public void printFilteredMap(String destination) {
+	public void printFilteredMap() {
 		this.result.forEach((k, v )-> v.forEach((ke,ve) -> ve.forEach((s) -> System.out.println(k + " : "+ ke + " : "+ s))));
 
 	}
 
 
 	/**
-	 * This method shuts down the service properly, i.e. closing server/db connection, 
-	 * storing data for all completed orders for future recovery etc
-	 * @param destination a String defining an optional destination for back-up data
+	 *	This method is used to build a List of ProfitResult object for profit type of statistic for each currency each day.
+	 * @param request holding site, date from, duration, Currency with (All) available as a choice  
+	 * @return List of ProfitResult object for profit type of statistic for each currency each day.
 	 */
 	@Override
 	public List<ProfitResult> profitStatistic(Request staticRequest) {
@@ -216,6 +214,11 @@ public class HQ_MoneyService implements HQ{
 	}
 
 
+	/**
+	 * This helping method to change String inputs to int.
+	 * @param duration (Day, Week, Month)
+	 * @return int based on the string duration.
+	 */
 	public static int 	dayCounter (String duration) {
 
 		logger.finer("Day Counter used");

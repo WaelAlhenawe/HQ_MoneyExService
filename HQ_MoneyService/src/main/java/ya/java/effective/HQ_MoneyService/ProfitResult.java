@@ -22,12 +22,12 @@ public class ProfitResult {
 	
 	
 	/**
-	 * @param buy
-	 * @param sell
-	 * @param timeStamp
-	 * @param profit
-	 * @param siteName
-	 * @param currencyCode
+	 * @param buy The amount of buying currency
+	 * @param sell The amount of selling currency
+	 * @param timeStamp Date of the transaction 
+	 * @param profit The amount of profit for specific currency in specific day 
+	 * @param siteName the name of site for each transaction 
+	 * @param currencyCode the currency code for this transaction 
 	 */
 	public ProfitResult(int buy, int sell, LocalDate timeStamp, String siteName, String currencyCode) {
 		super();
