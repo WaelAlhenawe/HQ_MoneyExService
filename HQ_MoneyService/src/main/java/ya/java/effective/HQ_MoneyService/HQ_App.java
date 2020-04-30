@@ -35,7 +35,7 @@ public class HQ_App
 		logger.fine("Starting test");  
 
 		
-		System.out.println( "HQ MoneyService\n---------------------\n" );
+		System.out.println( "HQ MoneyService\n--------------------\n" );
 
 		String SiteChoice =  HQApp_Support.SiteChoice();
 		String PeriodChoice = HQApp_Support.PeriodChoice();
