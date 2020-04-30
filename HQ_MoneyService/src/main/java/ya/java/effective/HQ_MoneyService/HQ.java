@@ -11,32 +11,13 @@ import java.util.List;
  */
 public interface HQ {
 
-
-<<<<<<< HEAD
-		/**
-		 * This method is used to print a report presenting current currencies and their amount
-		 * for an implementation of the MoneyService interface, i.e. a Site
-		 * @param destination a String defining where to write the report, i.e. Console/Textfile
-		 */
-		public void printFilteredMap(String destination);
-		
-		/**
-		 * This method shuts down the service properly, i.e. closing server/db connection, 
-		 * storing data for all completed orders for future recovery etc
-		 * @param destination a String defining an optional destination for back-up data
-		 * @return 
-		 */
-		public List<ProfitResult> profitStatistic(Request request);
-=======
 	/**
 	 * This method is used for Collect all the necessary information, and details   
 	 * @param staticrequest holding site, date from, duration, Currency with (All) available as a choice  
 	 * @return An optional map with the site name as a key and List of transactions as values.
 	 */
 	public void filteredTran (Request staticRequest, String location);
->>>>>>> 0ad8e20141de1b130f2c3b897e7a2db09690cccf
-
-
+	
 	/**
 	 * This method is used to print a report presenting current currencies and their amount
 	 * for an implementation of the MoneyService interface, i.e. a Site
@@ -48,8 +29,15 @@ public interface HQ {
 	 * This method shuts down the service properly, i.e. closing server/db connection, 
 	 * storing data for all completed orders for future recovery etc
 	 * @param destination a String defining an optional destination for back-up data
+	 * @return 
 	 */
-	public void profitStatistic(Request request);
+	public List<ProfitResult> profitStatistic(Request request);
+
+
+
+
+
+
 
 
 

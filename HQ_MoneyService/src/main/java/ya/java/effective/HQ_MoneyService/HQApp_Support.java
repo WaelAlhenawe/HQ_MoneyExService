@@ -174,6 +174,39 @@ public class HQApp_Support {
 		return path;
 
 	}
+	
+	static String StatisticType() {
+		String transactionList = "Transactions";
+		String profitList = "Profits";
+		String statisticType = "";
+		
+		int choice =0;
+		boolean ok;
+		do {
+			ok = true;
+
+			System.out.format("%nPlease Chose the Statistic Type%n");
+			System.out.println("1 - Transaction List ");
+			System.out.println("2 - Profits For Currency/ies");
+
+			System.out.print("Enter Your Choice:\t");
+			String Period_choice = input.next();
+			try {
+				choice = Integer.parseInt(Period_choice);
+			}catch(NumberFormatException e) {
+				System.out.println("Your choice " + Period_choice + " is not accepted!");
+				ok = false;
+			}
+
+		}while(!ok); 
+		
+		if(choice == 1) {
+			statisticType = transactionList;
+		} if(choice == 2) {
+			statisticType = profitList;
+			} 
+		return statisticType;
+	}
 	/**
 	 * Method used for interaction and choices
 	 * @param siteChoice a String defining the choice of site
