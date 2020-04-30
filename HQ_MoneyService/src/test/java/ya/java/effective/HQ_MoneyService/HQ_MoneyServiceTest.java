@@ -1,50 +1,43 @@
 package ya.java.effective.HQ_MoneyService;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.function.Function;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-//import jdk.vm.ci.code.site.Site;
-import affix.java.effective.moneyservice.TransactionMode;
+import affix.java.effective.moneyservice.Transaction;
 
 public class HQ_MoneyServiceTest {
 	
 	@Test
-	public void testSiteSupport1() {
+	public void testHQMoneyService1() {
+
+		final Map<String, Map<LocalDate, List <Transaction>>> result; 
+//		final Map<LocalDate, Map<String, Double>> currencyMap;
+		LocalDate date = LocalDate.parse("2020-04-22");
 		
-		Map<String, String> cashBoxTemp = new TreeMap<String, String>();
-		Map<String, Currency> currencyMapTemp = new TreeMap<String, Currency>();
-
-		cashBoxTemp.putIfAbsent("USD", "2000");
-		cashBoxTemp.putIfAbsent("SEK", "20000");
-
-		currencyMapTemp.putIfAbsent("USD", new Currency("USD", 9.9638));
+		String SiteChoice = "ALL";
+		String PeriodChoice = "DAY";
+		String StartDay_Period = "2020-04-20";
 		
-		Site temp = new Site(cashBoxTemp, currencyMapTemp, ConExApp.Site_Name);
+		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
+		Map<LocalDate, Map<String, Double>> currencyMap = ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
 		
-		String filename  = SiteSupport.generateFilename();
+		Function<String, String> part
+ = ConExApp.projectConfigParsing("test;tester . 2020-", 3);
 
-		boolean order1 = temp.buyMoney(new Order(1000.00, "USD", TransactionMode.BUY, "SOUTH"));
-		boolean order2 = temp.sellMoney(new Order(500.00, "USD", TransactionMode.SELL, "SOUTH"));
-		boolean order3 = temp.buyMoney(new Order(100.00, "USD", TransactionMode.BUY, "SOUTH"));
-		boolean order4 = temp.sellMoney(new Order(200.00, "USD", TransactionMode.SELL, "SOUTH"));
-
-
-
-		temp.shutDownService(null);
-
-//		File f = new File(filename);
-//
-//		boolean exists = f.exists();
-//		
-//		SiteSupport.readData(filename);
-//		
-//		
-//		System.out.println(SiteSupport.readData(filename));
+		String test = "";
+		test = part.toString();
 		
-		Assert.assertTrue(true);
+		boolean t = true;
+		if(test.isEmpty()) {
+			t = false;
+		}
+		
+		Assert.assertTrue(t);
 	}
 	
 	

@@ -9,8 +9,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses(
 	{ 
-		HQ_MoneyServiceTest.class, 
+		HQ_MoneyServiceTest.class,
 		ConExAppTest.class,
+		RequestTest.class,
 	}
 )
 public class JUnitAllTests {;}
