@@ -1,13 +1,13 @@
 package ya.java.effective.HQ_MoneyService;
 
-import java.sql.Date;
-import java.time.Duration;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Request {
 
-	private final String site;
-	private final Duration duration;
-	private final Date date;
+	private List<String> site = null;
+	private final String duration;
+	private final LocalDate date;
 	private final String currency;
 	/**
 	 * @param site
@@ -15,9 +15,12 @@ public class Request {
 	 * @param date
 	 * @param currency
 	 */
-	public Request(String site, Duration duration, Date date, String currency) {
+	public Request(String site, String duration, LocalDate date, String currency) {
 		super();
-		this.site = site;
+		if (site.equals("ALL")){
+			this.site = ConExApp.readSiteNamesConfig("SiteNamesConfig.txt").get();
+		}else {
+			this.site.add(site);		}
 		this.duration = duration;
 		this.date = date;
 		this.currency = currency;
@@ -25,19 +28,19 @@ public class Request {
 	/**
 	 * @return the site
 	 */
-	public synchronized String getSite() {
+	public synchronized List<String> getSite() {
 		return site;
 	}
 	/**
 	 * @return the duration
 	 */
-	public synchronized Duration getDuration() {
+	public synchronized String getDuration() {
 		return duration;
 	}
 	/**
 	 * @return the date
 	 */
-	public synchronized Date getDate() {
+	public synchronized LocalDate getDate() {
 		return date;
 	}
 	/**

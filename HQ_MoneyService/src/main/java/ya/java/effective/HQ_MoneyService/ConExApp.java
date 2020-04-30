@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -24,27 +27,87 @@ public class ConExApp {
 	public static final int Currency_Code_Place = 2;
 	public static final int Currency_Rate_Place = 3;
 
-	
-	// Set up a logger
-				private static Logger logger;
-				
-				static{
-					logger = Logger.getLogger("ya.java.effective.moneyservice");
-				}
 
-	
+	// Set up a logger
+	private static Logger logger;
+
+	static{
+		logger = Logger.getLogger("ya.java.effective.moneyservice");
+	}
+
+	public static Optional<List<String>> readSiteNamesConfig(String fileName) {
+
+		logger.finer("Reading "+ fileName +   "config file");
+
+
+		Path projectConfigPath = Paths.get(fileName);
+		try (Stream<String> currencyRateStream = Files.lines(projectConfigPath);) {
+			return Optional.of(currencyRateStream.collect(Collectors.toList()));
+		}					
+
+		catch (IOException ex) { 
+			logger.log(Level.WARNING, "Exception occured ", ex);
+		}
+		return Optional.empty(); 	
+
+	}
+
+	/**
+	 * @param fileName
+	 * @return
+	 */
+	public static Optional<Map<LocalDate, Map<String, Double>>> readCurrencyConfigFiles(String duration, LocalDate startDate,String filesLocations) {
+
+		Map<LocalDate, Map<String, Double>> maintemp = new TreeMap<>();	
+
+
+		for (LocalDate date = startDate; 
+				date.isBefore(startDate.plusDays(HQ_MoneyService.dayCounter(duration))); 
+				date = date.plusDays(1)){
+			LocalDate tempDate = date;
+			try {
+				maintemp.putAll( Files.walk(Paths.get(filesLocations))
+						.map(filePath -> filePath.getFileName().toString())
+						.filter(fileName-> fileName.contains(tempDate.toString()))
+						.filter(fileName-> fileName.contains("CurrencyConfig_"))
+						.collect(Collectors.toMap(k->tempDate, v-> readCurrencyConfig(v.toString()).get())));
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			//			filesNames.forEach(q-> readCurrencyConfig(q));
+			//			maintemp.putIfAbsent(date, temp);
+		}
+		return Optional.of(maintemp);
+	}
+
+
+	//		Path projectConfigPath = Paths.get(fileName);
+	//		try (Stream<String> currencyRateStream = Files.lines(projectConfigPath).filter(notValue);) {
+	//			return Optional.of(currencyRateStream.collect(Collectors.toMap
+	//					(keyMapper(Semicolon_Seperator, Currency_Code_Place), valueMapper(Semicolon_Seperator, Currency_Rate_Place))));
+	//		}					
+	//
+	//	catch (IOException ex) { 
+	//		logger.log(Level.WARNING, "Exception occured ", ex);
+	//	}
+	//	return Optional.empty(); 	
+	//
+	//}
+
 	/**
 	 * @param fileName
 	 * @return
 	 */
 	public static Optional<Map<String, Double>> readCurrencyConfig(String fileName) {
-		
+
 		logger.finer("Reading "+ fileName +   "config file");
-		
+
 		Predicate<String> notValue = (String input) -> { return input.contains(Semicolon_Seperator);};
 		Path projectConfigPath = Paths.get(fileName);
 		try (Stream<String> currencyRateStream = Files.lines(projectConfigPath).filter(notValue);) {
-			return Optional.of(currencyRateStream.collect(Collectors.toMap
+			return Optional.ofNullable(currencyRateStream.collect(Collectors.toMap
 					(keyMapper(Semicolon_Seperator, Currency_Code_Place), valueMapper(Semicolon_Seperator, Currency_Rate_Place))));
 		}					
 
@@ -60,12 +123,12 @@ public class ConExApp {
 	 * @param partNo
 	 * @return
 	 */
-	private static Function<String, String> projectConfigParsing(String sepearator, int partNo) {
+	public static Function<String, String> projectConfigParsing(String sepearator, int partNo) {
 		Function<String, String> part
 		= input -> { 
 			String[] parts = input.split(sepearator);
 			return parts[partNo].trim();};
-		return part;
+			return part;
 	}
 
 	/**
@@ -78,7 +141,7 @@ public class ConExApp {
 			String[] parts = input.split(sepearator);
 			String[] firstPart = parts[partNo].split(" ");
 			return firstPart[partNo-1].strip();};
-		return keyMapper;
+			return keyMapper;
 	}
 
 	/**
@@ -92,10 +155,12 @@ public class ConExApp {
 			String[] currency = parts[partNo-1].split(" ");
 			double ratePart = Double.parseDouble(parts[partNo].strip());
 			double rate = (Integer.parseInt(currency[0].strip()) == 1)? ratePart : ratePart/Integer.parseInt(currency[0].strip());
-	
+
 			return rate;
 		};
 		return valueMapper;}
+
+
 }
 
 

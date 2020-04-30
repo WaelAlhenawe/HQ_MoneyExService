@@ -1,6 +1,7 @@
 package affix.java.effective.moneyservice;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public final class Transaction implements java.io.Serializable {
 	
@@ -106,8 +107,9 @@ public final class Transaction implements java.io.Serializable {
 		}
 		@Override
 		public String toString() {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 			return String.format("Transaction [id=%s, timeStamp=%s, currencyCode=%s, amount=%s, mode=%s]", id,
-					timeStamp, currencyCode, amount, mode);
+					timeStamp.format(formatter), currencyCode, amount, mode);
 		}	
 
 }

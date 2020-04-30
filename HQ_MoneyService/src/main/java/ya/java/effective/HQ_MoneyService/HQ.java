@@ -1,12 +1,6 @@
 
 package ya.java.effective.HQ_MoneyService;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import affix.java.effective.moneyservice.Transaction;
-
 /**
  * @author wael
  *
@@ -19,7 +13,7 @@ public interface HQ {
 		 * @param staticrequest holding site, date from, duration, Currency with (All) available as a choice  
 		 * @return An optional map with the site name as a key and List of transactions as values.
 		 */
-		public Optional<Map<String, List <Transaction>>> filteredTran (Request staticRequest, String location);
+		public void filteredTran (Request staticRequest, String location);
 		
 
 		/**
@@ -34,9 +28,9 @@ public interface HQ {
 		 * storing data for all completed orders for future recovery etc
 		 * @param destination a String defining an optional destination for back-up data
 		 */
-		public void profitStatistic(String destination);
+		public void profitStatistic(Request request);
 
-
+	
 
 		
 
