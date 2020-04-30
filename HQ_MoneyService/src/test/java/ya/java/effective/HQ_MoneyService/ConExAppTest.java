@@ -30,7 +30,7 @@ public class ConExAppTest {
 		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
 
 		Function<String, String> part
-		= ConExApp.projectConfigParsing("test tester", 2);
+		= ConExApp.helpToParsing("test tester", 2);
 
 		String test = "";
 		test = part.toString();

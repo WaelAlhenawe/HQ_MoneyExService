@@ -11,21 +11,33 @@ import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
 /**
- * This class acts a configurator of the ExchangeApp application
+ * This class acts a configurator of the HQ App application
  */
 public class ConExApp {
 
-	public static final String Equal_Seperator = "="; 
-	public static final String Semicolon_Seperator = ";";
+	/**
+	 * Equal Separator
+	 */
+	public static final String Equal_Separator = "="; 
+	/**
+	 * Semicolon Separator
+	 */
+	public static final String Semicolon_Separator = ";";
+	/**
+	 * Currency Code Place in the CurrencyConfig File
+	 */
 	public static final int Currency_Code_Place = 2;
+	/**
+	 * Currency Rate Place in the CurrencyConfig File
+	 */
 	public static final int Currency_Rate_Place = 3;
+
 
 
 	// Set up a logger
@@ -35,6 +47,11 @@ public class ConExApp {
 		logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
 	}
 
+	/**
+	 * This method is used for configure the Sites Names
+	 * @param fileName will call the config file by its name
+	 * @return Optional List of sites names as list of String
+	 */
 	public static Optional<List<String>> readSiteNamesConfig(String fileName) {
 
 		logger.finer("Reading "+ fileName +   "config file");
@@ -53,8 +70,12 @@ public class ConExApp {
 	}
 
 	/**
-	 * @param fileName
-	 * @return
+	 * This method read all in specific directory Currency Config files.
+	 * @param duration A String Value for specific how much is the interval to read files 
+	 * @param startDate The beginning of the duration interval for reading files. 
+	 * @param filesLocations The directory of files location 
+	 * @return Optional Map Holding Currency Config for long period ( Localdata the date of the file as a key 
+	 * and Map as value of Currency Code String as a key and Double as a value of each currency).
 	 */
 	public static Optional<Map<LocalDate, Map<String, Double>>> readCurrencyConfigFiles(String duration, LocalDate startDate,String filesLocations) {
 
@@ -78,39 +99,27 @@ public class ConExApp {
 				System.out.println("An IOException occurred " + e1);
 				
 			}
-			//			filesNames.forEach(q-> readCurrencyConfig(q));
-			//			maintemp.putIfAbsent(date, temp);
 		}
 		return Optional.of(maintemp);
 	}
 
 
-	//		Path projectConfigPath = Paths.get(fileName);
-	//		try (Stream<String> currencyRateStream = Files.lines(projectConfigPath).filter(notValue);) {
-	//			return Optional.of(currencyRateStream.collect(Collectors.toMap
-	//					(keyMapper(Semicolon_Seperator, Currency_Code_Place), valueMapper(Semicolon_Seperator, Currency_Rate_Place))));
-	//		}					
-	//
-	//	catch (IOException ex) { 
-	//		logger.log(Level.WARNING, "Exception occured ", ex);
-	//	}
-	//	return Optional.empty(); 	
-	//
-	//}
+
 
 	/**
-	 * @param fileName
-	 * @return
+	 * This method read the Currency Config file and sets application constants
+	 * @param fileName is the name of the currencyConfig file
+	 * @return Optional Map Holding Currency Config( Currency Code as Key and Double Value).
 	 */
 	public static Optional<Map<String, Double>> readCurrencyConfig(String fileName) {
 
 		logger.finer("Reading "+ fileName +   "config file");
 
-		Predicate<String> notValue = (String input) -> { return input.contains(Semicolon_Seperator);};
+		Predicate<String> notValue = (String input) -> { return input.contains(Semicolon_Separator);};
 		Path projectConfigPath = Paths.get(fileName);
 		try (Stream<String> currencyRateStream = Files.lines(projectConfigPath).filter(notValue);) {
 			return Optional.ofNullable(currencyRateStream.collect(Collectors.toMap
-					(keyMapper(Semicolon_Seperator, Currency_Code_Place), valueMapper(Semicolon_Seperator, Currency_Rate_Place))));
+					(keyMapper(Semicolon_Separator, Currency_Code_Place), valueMapper(Semicolon_Separator, Currency_Rate_Place))));
 		}					
 
 		catch (IOException ex) { 
@@ -121,11 +130,12 @@ public class ConExApp {
 	}
 
 	/**
-	 * @param sepearator
-	 * @param partNo
-	 * @return
+	 * This method is helping method for parsing The Project Config File 
+	 * @param separator for pars the line based on it.  
+	 * @param partNo Which index number should get it back;
+	 * @return Function<String, String> with the specific part for use in Stream
 	 */
-	public static Function<String, String> projectConfigParsing(String sepearator, int partNo) {
+	public static Function<String, String> helpToParsing(String sepearator, int partNo) {
 		
 		logger.finer("Project config Parsing used");
 		Function<String, String> part
@@ -136,9 +146,10 @@ public class ConExApp {
 	}
 
 	/**
-	 * @param sepearator
-	 * @param partNo
-	 * @return Function with currency code as a key for the map
+	 * This method is a keyMaper for building the Currency Map
+	 * @param separator for pars the line based on it.  
+	 * @param partNo Which index number should get it back;
+	 * @return Function<String, String> with the specific part as String for use in Stream
 	 */
 	private static Function<String, String> keyMapper(String sepearator, int partNo) {
 		
@@ -150,9 +161,10 @@ public class ConExApp {
 	}
 
 	/**
-	 * @param sepearator
-	 * @param partNo
-	 * @return
+	 * This method is a valueMaper for building the Currency Map
+	 * @param separator for pars the line based on it.  
+	 * @param partNo Which index number should get it back;
+	 * @return Function<String, Currency> with the a Currency Object for use in Stream
 	 */
 	private static Function<String, Double> valueMapper(String sepearator, int partNo) {
 		Function<String, Double> valueMapper = input -> {
