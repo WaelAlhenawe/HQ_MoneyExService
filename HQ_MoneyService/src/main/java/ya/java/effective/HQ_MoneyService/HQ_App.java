@@ -10,7 +10,9 @@ import java.util.logging.Logger;
 
 
 /**
- * @author wael + robin & batman and mr Boba & SuperMan
+ * 
+ * This is main class for HQ App
+ * @author Team South
  *
  */
 public class HQ_App 
@@ -36,7 +38,7 @@ public class HQ_App
 		logger.fine("Starting test");  
 
 		
-		System.out.println( "HQ MoneyService\n---------------------\n" );
+		System.out.println( "HQ MoneyService\n--------------------\n" );
 
 		String SiteChoice =  HQApp_Support.SiteChoice();
 		String PeriodChoice = HQApp_Support.PeriodChoice();

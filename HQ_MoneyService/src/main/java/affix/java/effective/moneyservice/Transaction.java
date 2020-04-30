@@ -2,9 +2,19 @@ package affix.java.effective.moneyservice;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-public final class Transaction implements java.io.Serializable {
+
+/**
+ * This class represents a transaction in the MoneyService system.
+ * A transaction is described by Currency, amount, and buy/sell mode.
+ * A time stamp is needed to recreate the Order based on stored rates
+ * Bookkeeping requires that all transaction also holds a unique id.
+ * It is only used internally so default serialization will do
+ */
+public final class Transaction implements Comparable<Transaction>, java.io.Serializable {
 	
 		private static final long serialVersionUID = 1L;
 		
@@ -22,17 +32,25 @@ public final class Transaction implements java.io.Serializable {
 			logger = Logger.getLogger("affix.java.effective.moneyservice");
 		}
 		
-		
+		/**
+		 * Constructor
+		 * @param timeStamp a LocalDateTime defining transaction time; when placed
+		 * @param currencyCode a String defining the code of currency (ie USD)
+		 * @param amount a Integer defining the amount of currency (corresponding to buy or sell)
+		 * @param mode a Emun TransactionMode defining if transaction was a Buy or Sell
+		 */
 		public Transaction(LocalDateTime timeStamp, String currencyCode, int amount, TransactionMode mode) {
 			
 			this(uniqueId++, timeStamp, currencyCode, amount, mode);
 		}
 		/**
-		 * @param id
-		 * @param timeStamp
-		 * @param currencyCode
-		 * @param amount
-		 * @param mode
+		 * Constructor
+		 * @param id a Integer defining the unique id of the transaction
+		 * @param timeStamp a LocalDateTime defining transaction time; when placed
+		 * @param currencyCode a String defining the code of currency (ie USD)
+		 * @param amount a Integer defining the amount of currency (corresponding to buy or sell)
+		 * @param mode a Emun TransactionMode defining if transaction was a Buy or Sell
+		 * also covering/handling for unique id stamping for each transaction
 		 */
 		public Transaction(int id, LocalDateTime timeStamp, String currencyCode, int amount, TransactionMode mode) {
 			super();
@@ -117,6 +135,16 @@ public final class Transaction implements java.io.Serializable {
 				return false;
 			return true;
 		}
+		
+		@Override
+		public int compareTo(Transaction that) {
+			
+			return Objects.compare(this, that, Comparator.comparing(Transaction::getId)     	
+	                );
+			
+		}
+		
+
 		@Override
 		public String toString() {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
@@ -124,4 +152,7 @@ public final class Transaction implements java.io.Serializable {
 					timeStamp.format(formatter), currencyCode, amount, mode);
 		}	
 
+		
+		
+		
 }
