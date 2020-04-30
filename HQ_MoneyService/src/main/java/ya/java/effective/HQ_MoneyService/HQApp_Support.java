@@ -23,6 +23,8 @@ public class HQApp_Support {
 		String north = "NORTH";
 		String center = "CENTER";
 		String south = "SOUTH";
+		String west = "WEST";
+
 		String site = null;
 		
 		int choice = 0;
@@ -33,7 +35,9 @@ public class HQApp_Support {
 			System.out.println("1 - NORTH");
 			System.out.println("2 - CENTER");
 			System.out.println("3 - SOUTH");
-			System.out.println("4 - ALL");
+			System.out.println("4 - WEST");
+
+			System.out.println("5 - ALL");
 
 			System.out.print("Enter Your Choice:\t");
 			String Site_choice = input.next();
@@ -53,8 +57,11 @@ public class HQApp_Support {
 		} if(choice == 3) {
 			site = south;
 		} if(choice == 4) {
+			site = west;
+		} if(choice == 5) {
 			site = "ALL";
 		}
+		
 				
 		return site;
 	}
@@ -178,6 +185,9 @@ public class HQApp_Support {
 			break;
 		case "SOUTH":
 			System.out.println("Site:\tSOUTH");
+			break;
+		case "WEST":
+			System.out.println("Site:\tWEST");
 			break;
 		case "ALL":
 			System.out.println("Site:\tALL");	

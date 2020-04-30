@@ -7,7 +7,9 @@ import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,12 +29,12 @@ public class HQ_MoneyService implements HQ{
 	private final Map<String, Map<LocalDate, List <Transaction>>> result; 
 	private final Map<LocalDate, Map<String, Double>> currencyMap;
 
-	   // Set up a logger
-		private static Logger logger;
+	// Set up a logger
+	private static Logger logger;
 
-		static{
-			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
-		}
+	static{
+		logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+	}
 
 
 	/**
@@ -48,9 +50,9 @@ public class HQ_MoneyService implements HQ{
 
 	@Override
 	public void filteredTran(Request staticRequest, String location) {
-		
+
 		logger.finer(" Processing -> filter Transaction");
-		
+
 		Map <LocalDate, List<Transaction>> temp = new TreeMap<>();
 		for( String s : staticRequest.getSite()) {
 			for (LocalDate date = staticRequest.getDate(); 
@@ -79,9 +81,9 @@ public class HQ_MoneyService implements HQ{
 	 * @return Function with currency code as a key for the map
 	 */
 	private static Function<String, LocalDate> keyMapper() {
-		
+
 		logger.finer("KeyMapper used");
-		
+
 		Function<String, LocalDate> keyMapper = input -> {
 			String[] parts = input.split("_");
 			String[] subParts = parts[2].split("\\.");
@@ -97,9 +99,9 @@ public class HQ_MoneyService implements HQ{
 	 * @return
 	 */
 	private static Function<String, List<Transaction>> valueMapper(String currencyCode) {
-		
+
 		logger.finer("Value Mapper used");
-		
+
 		Function<String, List<Transaction>> valueMapper = input -> {
 			List<Transaction>temp = Collections.emptyList();
 			if (currencyCode.equals("ALL") ) {
@@ -122,37 +124,50 @@ public class HQ_MoneyService implements HQ{
 
 
 	@Override
-	public void profitStatistic(Request staticRequest) {
-//		Map<LocalDate, List <Transaction>> x = this.result.get(staticRequest.getSite());
-//		for (Map<LocalDate, List <Transaction>> key : this.result.get(staticRequest.getSite()) {
-//		      System.out.println("Key : " + key + " value : " ));
-//		    }
-////		for (String site : this.result.get(staticRequest.getSite())) {
-////			
-////		}
-//		int[] buy = {0}; 
-//		int[]sell = {0};
-//		int[]profit = {0};
-//		
-//		for ( )
-//		this.result.forEach((k, v )-> v.forEach((ke,ve) -> ve.forEach((s) -> {
-//			if( s.getMode().equals(TransactionMode.BUY)) {
-//				buy[0] += s.getAmount()*this.currencyMap.get(ke).get(s.getCurrencyCode())*1.005d;
-//			}
-//			if( s.getMode().equals(TransactionMode.SELL)) {
-//				sell[0] += s.getAmount()*this.currencyMap.get(ke).get(s.getCurrencyCode())*0.995d;
-//			}
-//		})));
-//		profit[0] =  sell[0] - buy[0];
-//
-//		System.out.println(profit[0]);
-//		System.out.println("\nStatistics for site "+ k +" - Currency " +currencyName+ 
-//				" - Date "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
-//				.format(timeStamp)+")" );
-//		System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
-//		System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
-//		System.out.println("Profit    \t"+profit+"\tSEK");
-//		"+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
+	public List<ProfitResult> profitStatistic(Request staticRequest) {
+		List<ProfitResult> result = new ArrayList<>();
+		Map<String, int[]> buySellMap = new TreeMap<String, int[]>();
+		Iterator<Map.Entry<String, Map<LocalDate, List <Transaction>>>> iterator = this.result.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<String, Map<LocalDate, List <Transaction>>> entry = iterator.next();
+			Iterator<Map.Entry<LocalDate, List <Transaction>>> iterator2 = entry.getValue().entrySet().iterator();
+			while (iterator2.hasNext()) {
+				Map.Entry<LocalDate, List <Transaction>> entry2 = iterator2.next();
+				for (Transaction Tra : entry2.getValue()) {
+					int buySellAmount [] = new int [] {0,0};
+					if( Tra.getMode().equals(TransactionMode.BUY)) {
+						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
+							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1];
+							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*1.005d);
+						}
+						else {
+							buySellAmount[0] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*1.005d);
+						}
+					}
+					if( Tra.getMode().equals(TransactionMode.SELL)) {
+						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
+							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0];
+							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*0.995d);
+						}
+						else {
+							buySellAmount[1] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*0.995d);
+
+						}				
+					}
+					buySellMap.put(Tra.getCurrencyCode(), buySellAmount);
+
+					}
+				Iterator<Map.Entry<String, int []>> iterator3 = buySellMap.entrySet().iterator();
+				while (iterator3.hasNext()) {
+					Map.Entry<String, int []> entry3 = iterator3.next();
+					
+					
+					result.add(new ProfitResult(entry3.getValue()[0], entry3.getValue()[1], entry2.getKey(), entry.getKey(), entry3.getKey()));
+				}
+				buySellMap.clear();
+			}
+		}
+		return result;
 	}
 
 
@@ -489,7 +504,7 @@ public class HQ_MoneyService implements HQ{
 			transactionList = (List<Transaction>)ois.readObject();
 		}
 		catch(IOException | ClassNotFoundException ioe){
-			
+
 			System.out.println("Exception occurred during deserialization");
 		} 
 
@@ -500,7 +515,7 @@ public class HQ_MoneyService implements HQ{
 
 	static void presentFileContents(List<Transaction> transactionList){
 
-	     logger.finer("Presenting File contents used");	
+		logger.finer("Presenting File contents used");	
 		//		System.out.println("\nDEBUG: presenting file content:\n");
 
 		for(int i = 0; i < transactionList.size(); i++) {
@@ -510,9 +525,9 @@ public class HQ_MoneyService implements HQ{
 
 
 	public static int 	dayCounter (String duration) {
-		
+
 		logger.finer("Day Counter used");
-		
+
 		int x = 0 ;
 		if(duration.equalsIgnoreCase("DAY")) {
 			x = 1; 

@@ -1,12 +1,13 @@
 package ya.java.effective.HQ_MoneyService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class Request {
 
-	private List<String> site = null;
+	private List<String> site = new ArrayList<>();
 	private final String duration;
 	private final LocalDate date;
 	private final String currency;

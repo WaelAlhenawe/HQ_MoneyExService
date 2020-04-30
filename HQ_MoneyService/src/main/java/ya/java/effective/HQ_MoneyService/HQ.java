@@ -1,6 +1,8 @@
 
 package ya.java.effective.HQ_MoneyService;
 
+import java.util.List;
+
 /**
  * @author wael
  *
@@ -27,8 +29,9 @@ public interface HQ {
 		 * This method shuts down the service properly, i.e. closing server/db connection, 
 		 * storing data for all completed orders for future recovery etc
 		 * @param destination a String defining an optional destination for back-up data
+		 * @return 
 		 */
-		public void profitStatistic(Request request);
+		public List<ProfitResult> profitStatistic(Request request);
 
 	
 
