@@ -1,0 +1,12 @@
+﻿Period	Grupp	Serie	Värde
+2020-04-29	Valutor mot svenska kronor	1 AUD	6.4409
+2020-04-29	Valutor mot svenska kronor	100 CHF	1013.2002
+2020-04-29	Valutor mot svenska kronor	1 CNY	1.3917
+2020-04-29	Valutor mot svenska kronor	100 DKK	143.4936
+2020-04-29	Valutor mot svenska kronor	1 EUR	10.6994
+2020-04-29	Valutor mot svenska kronor	1 GBP	12.275
+2020-04-29	Valutor mot svenska kronor	100 INR	13.0276
+2020-04-29	Valutor mot svenska kronor	100 JPY	9.2526
+2020-04-29	Valutor mot svenska kronor	100 NOK	94.8569
+2020-04-29	Valutor mot svenska kronor	100 RUB	13.3478
+2020-04-29	Valutor mot svenska kronor	1 USD	9.849
