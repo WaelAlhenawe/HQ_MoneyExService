@@ -139,9 +139,7 @@ public final class Transaction implements Comparable<Transaction>, java.io.Seria
 		@Override
 		public int compareTo(Transaction that) {
 			
-			return Objects.compare(this, that, Comparator.comparing(Transaction::getId)
-				        	.thenComparing(Transaction::getTimeStamp)
-				        	
+			return Objects.compare(this, that, Comparator.comparing(Transaction::getId)     	
 	                );
 			
 		}
