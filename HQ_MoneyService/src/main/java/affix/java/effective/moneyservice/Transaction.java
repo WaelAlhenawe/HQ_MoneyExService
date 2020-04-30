@@ -2,9 +2,13 @@ package affix.java.effective.moneyservice;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-public final class Transaction implements java.io.Serializable {
+
+
+public final class Transaction implements Comparable<Transaction>, java.io.Serializable {
 	
 		private static final long serialVersionUID = 1L;
 		
@@ -117,6 +121,18 @@ public final class Transaction implements java.io.Serializable {
 				return false;
 			return true;
 		}
+		
+		@Override
+		public int compareTo(Transaction that) {
+			
+			return Objects.compare(this, that, Comparator.comparing(Transaction::getId)
+				        	.thenComparing(Transaction::getTimeStamp)
+				        	.thenComparing(Transaction::getCurrencyCode)
+	                );
+			
+		}
+		
+
 		@Override
 		public String toString() {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
@@ -124,4 +140,7 @@ public final class Transaction implements java.io.Serializable {
 					timeStamp.format(formatter), currencyCode, amount, mode);
 		}	
 
+		
+		
+		
 }
