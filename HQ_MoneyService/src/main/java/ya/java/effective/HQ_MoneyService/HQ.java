@@ -2,7 +2,9 @@
 package ya.java.effective.HQ_MoneyService;
 
 /**
- * @author wael
+ * 
+ * This is a support class for user interaction using CLI
+ * @author Team South
  *
  */
 public interface HQ {

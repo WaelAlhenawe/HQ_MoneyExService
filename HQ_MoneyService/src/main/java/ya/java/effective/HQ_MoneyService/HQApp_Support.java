@@ -4,6 +4,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * This is a support class for user interaction using CLI
+ * @author Team South
+ *
+ */
 public class HQApp_Support {
 
 	static Scanner input = new Scanner(System.in);

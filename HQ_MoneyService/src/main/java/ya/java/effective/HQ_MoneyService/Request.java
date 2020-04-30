@@ -4,27 +4,33 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * This is a support class to handle requests
+ * @author Team South
+ *
+ */
 public class Request {
 
 	private List<String> site = null;
 	private final String duration;
 	private final LocalDate date;
 	private final String currency;
-	
-	   // Set up a logger
-		private static Logger logger;
 
-		static{
-			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
-		}
-	
-	
-	
+	// Set up a logger
+	private static Logger logger;
+
+	static{
+		logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+	}
+
 	/**
-	 * @param site
-	 * @param duration
-	 * @param date
-	 * @param currency
+	 * Constructor
+	 * @param site a String defining the site of choice
+	 * @param duration a String defining the period
+	 * @param date a LocalDate defining the date
+	 * @param currency a String defining the currency code (ie USD)
+	 * conditions if site choice is set to ALL, config should be read for configuration
 	 */
 	public Request(String site, String duration, LocalDate date, String currency) {
 		super();
@@ -62,9 +68,9 @@ public class Request {
 	}
 	@Override
 	public int hashCode() {
-		
+
 		logger.finest("Request hash code used ");
-		
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
@@ -75,9 +81,9 @@ public class Request {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		
+
 		logger.finest("Request equals used ");
-		
+
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -111,7 +117,7 @@ public class Request {
 	public String toString() {
 		return String.format("Request [site=%s, duration=%s, date=%s, currency=%s]", site, duration, date, currency);
 	} 
-	
-	
-	
+
+
+
 }

@@ -19,7 +19,9 @@ import affix.java.effective.moneyservice.Transaction;
 import affix.java.effective.moneyservice.TransactionMode;
 
 /**
- * @author wael
+ * 
+ * This is a support class for user interaction using CLI
+ * @author Team South
  *
  */
 public class HQ_MoneyService implements HQ{

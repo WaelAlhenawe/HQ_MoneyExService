@@ -8,7 +8,9 @@ import java.util.logging.Logger;
 
 
 /**
- * @author wael + robin & batman and mr Boba & SuperMan
+ * 
+ * This is main class for HQ App
+ * @author Team South
  *
  */
 public class HQ_App 
