@@ -167,7 +167,13 @@ public class HQApp_Support {
 		return path;
 
 	}
-
+	/**
+	 * Method used for interaction and choices
+	 * @param siteChoice a String defining the choice of site
+	 * @param periodChoice a String defining the choice of period for stats
+	 * @param startDayPeriod a String defining the choice of date starting for stats
+	 * @param currencyCode a String defining the choice of currency for stats (ie USD, or ALL)
+	 */
 	static void printingChoiceForStats(String siteChoice,String periodChoice,String startDayPeriod,String currencyCode) {
 
 		logger.finer("Printing choice for stats Used");
