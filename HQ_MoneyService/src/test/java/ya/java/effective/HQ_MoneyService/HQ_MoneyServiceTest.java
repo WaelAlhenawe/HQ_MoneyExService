@@ -3,6 +3,8 @@ package ya.java.effective.HQ_MoneyService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -166,5 +168,79 @@ public class HQ_MoneyServiceTest {
 //		}
 		Assert.assertTrue(check);
 	}
+	
+
+
+@Test
+
+    public void testHQMoneyService8() {
+
+        
+
+        Map<String,Double> currencyMap = new TreeMap<>();
+
+        Map<LocalDate,Map<String, Double>> map = new TreeMap<>();
+
+        
+
+        currencyMap.putIfAbsent("AUD",6.0501);
+
+        currencyMap.putIfAbsent("USD", 9.9638);
+
+        
+
+        LocalDate date = LocalDate.parse("2020-04-01");
+
+        map.putIfAbsent(date, currencyMap);
+
+        
+
+        HQ_MoneyService hq = new HQ_MoneyService(map);
+
+        
+
+        Assert.assertNotNull(hq);
+
+        
+
+        
+
+    }
+
+    @Test
+
+    public void testHQMoneyService9() {
+
+        
+
+        Map<String,Double> currencyMap = new TreeMap<>();
+
+        Map<LocalDate,Map<String, Double>> map = new TreeMap<>();
+
+        
+
+        currencyMap.putIfAbsent("EUR",10.9377);
+
+        currencyMap.putIfAbsent("USD", 9.9638);
+
+        
+
+        LocalDate date = LocalDate.parse("2020-04-01");
+
+        map.putIfAbsent(date, currencyMap);
+
+        
+
+        HQ_MoneyService hq = new HQ_MoneyService(map);
+
+        
+
+        Assert.assertNotNull(hq);
+
+        
+
+        
+
+    }
 
 }
