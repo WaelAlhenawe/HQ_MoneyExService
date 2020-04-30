@@ -6,17 +6,19 @@ package ya.java.effective.HQ_MoneyService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 /**
- * @author wael
- *
- */
-public class ProfitResult {
-	int buy;
-	int sell;
-	LocalDate timeStamp;
-	int profit;
-	String siteName;
-	String currencyCode;
+ * ProfitResult is a value type defining a collectable item to be stored in a HQ
+ * 
+ * 
+ */ 
+ public class ProfitResult {
+	final int buy;
+	final int sell;
+	final LocalDate timeStamp;
+	final int profit;
+	final String siteName;
+	final String currencyCode;
 	
 	
 	

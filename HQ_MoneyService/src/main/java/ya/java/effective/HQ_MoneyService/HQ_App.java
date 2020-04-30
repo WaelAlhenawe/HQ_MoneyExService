@@ -51,7 +51,7 @@ public class HQ_App
 		Statistic.filteredTran(req, path);
 
 		if (statisticType.equals("Transactions")) {
-			Statistic.printFilteredMap(path);
+			Statistic.printFilteredMap();
 		}
 		if (statisticType.equals("Profits")) {
 			List<ProfitResult> temp = Statistic.profitStatistic(req);
