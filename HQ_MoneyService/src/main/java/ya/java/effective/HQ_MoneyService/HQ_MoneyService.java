@@ -20,7 +20,7 @@ import affix.java.effective.moneyservice.TransactionMode;
 
 /**
  * 
- * This is a support class for user interaction using CLI
+ * This class is the spider in the web, and communicates by crossreference to other classes and methods.
  * @author Team South
  *
  */
@@ -29,16 +29,17 @@ public class HQ_MoneyService implements HQ{
 	private final Map<String, Map<LocalDate, List <Transaction>>> result; 
 	private final Map<LocalDate, Map<String, Double>> currencyMap;
 
-	   // Set up a logger
-		private static Logger logger;
+	// Set up a logger
+	private static Logger logger;
 
-		static{
-			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
-		}
-
+	static{
+		logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+	}
 
 	/**
+	 * Constructor	 
 	 * @param result
+	 * @param currencyMap a Map of LocalDate of Map of String(Site ie SOUTH) and Double(holding the supported currencies)
 	 */
 	public HQ_MoneyService(Map<LocalDate,Map<String, Double>> currencyMap) {
 		super();
@@ -46,13 +47,16 @@ public class HQ_MoneyService implements HQ{
 		this.currencyMap = currencyMap; 
 	}
 
-
-
+	/**
+	 * This method is used for Collect all the necessary information, and details   
+	 * @param staticrequest holding site, date from, duration, Currency with (All) available as a choice  
+	 * @return An optional map with the site name as a key and List of transactions as values.
+	 */
 	@Override
 	public void filteredTran(Request staticRequest, String location) {
-		
+
 		logger.finer(" Processing -> filter Transaction");
-		
+
 		Map <LocalDate, List<Transaction>> temp = new TreeMap<>();
 		for( String s : staticRequest.getSite()) {
 			for (LocalDate date = staticRequest.getDate(); 
@@ -81,9 +85,9 @@ public class HQ_MoneyService implements HQ{
 	 * @return Function with currency code as a key for the map
 	 */
 	private static Function<String, LocalDate> keyMapper() {
-		
+
 		logger.finer("KeyMapper used");
-		
+
 		Function<String, LocalDate> keyMapper = input -> {
 			String[] parts = input.split("_");
 			String[] subParts = parts[2].split("\\.");
@@ -99,9 +103,9 @@ public class HQ_MoneyService implements HQ{
 	 * @return
 	 */
 	private static Function<String, List<Transaction>> valueMapper(String currencyCode) {
-		
+
 		logger.finer("Value Mapper used");
-		
+
 		Function<String, List<Transaction>> valueMapper = input -> {
 			List<Transaction>temp = Collections.emptyList();
 			if (currencyCode.equals("ALL") ) {
@@ -116,6 +120,11 @@ public class HQ_MoneyService implements HQ{
 		};
 		return valueMapper;}
 
+	/**
+	 * This method is used to print a report presenting current currencies and their amount
+	 * for an implementation of the MoneyService interface, i.e. a Site
+	 * @param destination a String defining where to write the report, i.e. Console/Textfile
+	 */
 	@Override
 	public void printFilteredMap(String destination) {
 		this.result.forEach((k, v )-> v.forEach((ke,ve) -> ve.forEach((s) -> System.out.println(k + " : "+ ke + " : "+ s))));
@@ -123,38 +132,43 @@ public class HQ_MoneyService implements HQ{
 	}
 
 
+	/**
+	 * This method shuts down the service properly, i.e. closing server/db connection, 
+	 * storing data for all completed orders for future recovery etc
+	 * @param destination a String defining an optional destination for back-up data
+	 */
 	@Override
 	public void profitStatistic(Request staticRequest) {
-//		Map<LocalDate, List <Transaction>> x = this.result.get(staticRequest.getSite());
-//		for (Map<LocalDate, List <Transaction>> key : this.result.get(staticRequest.getSite()) {
-//		      System.out.println("Key : " + key + " value : " ));
-//		    }
-////		for (String site : this.result.get(staticRequest.getSite())) {
-////			
-////		}
-//		int[] buy = {0}; 
-//		int[]sell = {0};
-//		int[]profit = {0};
-//		
-//		for ( )
-//		this.result.forEach((k, v )-> v.forEach((ke,ve) -> ve.forEach((s) -> {
-//			if( s.getMode().equals(TransactionMode.BUY)) {
-//				buy[0] += s.getAmount()*this.currencyMap.get(ke).get(s.getCurrencyCode())*1.005d;
-//			}
-//			if( s.getMode().equals(TransactionMode.SELL)) {
-//				sell[0] += s.getAmount()*this.currencyMap.get(ke).get(s.getCurrencyCode())*0.995d;
-//			}
-//		})));
-//		profit[0] =  sell[0] - buy[0];
-//
-//		System.out.println(profit[0]);
-//		System.out.println("\nStatistics for site "+ k +" - Currency " +currencyName+ 
-//				" - Date "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
-//				.format(timeStamp)+")" );
-//		System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
-//		System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
-//		System.out.println("Profit    \t"+profit+"\tSEK");
-//		"+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
+		//		Map<LocalDate, List <Transaction>> x = this.result.get(staticRequest.getSite());
+		//		for (Map<LocalDate, List <Transaction>> key : this.result.get(staticRequest.getSite()) {
+		//		      System.out.println("Key : " + key + " value : " ));
+		//		    }
+		////		for (String site : this.result.get(staticRequest.getSite())) {
+		////			
+		////		}
+		//		int[] buy = {0}; 
+		//		int[]sell = {0};
+		//		int[]profit = {0};
+		//		
+		//		for ( )
+		//		this.result.forEach((k, v )-> v.forEach((ke,ve) -> ve.forEach((s) -> {
+		//			if( s.getMode().equals(TransactionMode.BUY)) {
+		//				buy[0] += s.getAmount()*this.currencyMap.get(ke).get(s.getCurrencyCode())*1.005d;
+		//			}
+		//			if( s.getMode().equals(TransactionMode.SELL)) {
+		//				sell[0] += s.getAmount()*this.currencyMap.get(ke).get(s.getCurrencyCode())*0.995d;
+		//			}
+		//		})));
+		//		profit[0] =  sell[0] - buy[0];
+		//
+		//		System.out.println(profit[0]);
+		//		System.out.println("\nStatistics for site "+ k +" - Currency " +currencyName+ 
+		//				" - Date "+date+ " ("+(DateTimeFormatter.ISO_DATE) 
+		//				.format(timeStamp)+")" );
+		//		System.out.println("Total  SELL\t"+sellAmount+"\tSEK");
+		//		System.out.println("Total   BUY\t"+buyAmount+"\tSEK");
+		//		System.out.println("Profit    \t"+profit+"\tSEK");
+		//		"+date+ " ("+tempStr.replaceAll("[^0-9?!\\-]","")+")
 	}
 
 
@@ -480,7 +494,16 @@ public class HQ_MoneyService implements HQ{
 	//		return resultCalc;
 	//	}
 	//
-	// read data from file using deserialization
+	
+	
+	
+	
+	
+	/**
+	 * Read data from serialized file, as an object
+	 * @param filename a String holding a input or output filename
+	 * @return transactionList a List holding a Transaction list
+	 */
 	@SuppressWarnings("unchecked")
 	public static List<Transaction> readObject(String filename){
 
@@ -491,7 +514,7 @@ public class HQ_MoneyService implements HQ{
 			transactionList = (List<Transaction>)ois.readObject();
 		}
 		catch(IOException | ClassNotFoundException ioe){
-			
+
 			System.out.println("Exception occurred during deserialization");
 		} 
 
@@ -500,9 +523,13 @@ public class HQ_MoneyService implements HQ{
 		return (List<Transaction>) transactionList;
 	}
 
+	/**
+	 * Present content to console in a List of Transactions
+	 * @param transactionList a List holding a Transaction list
+	 */
 	static void presentFileContents(List<Transaction> transactionList){
 
-	     logger.finer("Presenting File contents used");	
+		logger.finer("Presenting File contents used");	
 		//		System.out.println("\nDEBUG: presenting file content:\n");
 
 		for(int i = 0; i < transactionList.size(); i++) {
@@ -512,9 +539,9 @@ public class HQ_MoneyService implements HQ{
 
 
 	public static int 	dayCounter (String duration) {
-		
+
 		logger.finer("Day Counter used");
-		
+
 		int x = 0 ;
 		if(duration.equalsIgnoreCase("DAY")) {
 			x = 1; 
