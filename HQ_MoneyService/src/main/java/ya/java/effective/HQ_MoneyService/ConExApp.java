@@ -32,7 +32,7 @@ public class ConExApp {
 	private static Logger logger;
 
 	static{
-		logger = Logger.getLogger("ya.java.effective.moneyservice");
+		logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
 	}
 
 	public static Optional<List<String>> readSiteNamesConfig(String fileName) {
@@ -46,7 +46,7 @@ public class ConExApp {
 		}					
 
 		catch (IOException ex) { 
-			logger.log(Level.WARNING, "Exception occured ", ex);
+			System.out.println("An IOException occurred for file " + fileName);
 		}
 		return Optional.empty(); 	
 
@@ -58,6 +58,8 @@ public class ConExApp {
 	 */
 	public static Optional<Map<LocalDate, Map<String, Double>>> readCurrencyConfigFiles(String duration, LocalDate startDate,String filesLocations) {
 
+		logger.finer("Creating <Map<LocalDate, Map<String, Double>>> from  Currency Config files");
+		
 		Map<LocalDate, Map<String, Double>> maintemp = new TreeMap<>();	
 
 
@@ -73,8 +75,8 @@ public class ConExApp {
 						.collect(Collectors.toMap(k->tempDate, v-> readCurrencyConfig(v.toString()).get())));
 
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("An IOException occurred " + e1);
+				
 			}
 			//			filesNames.forEach(q-> readCurrencyConfig(q));
 			//			maintemp.putIfAbsent(date, temp);
@@ -112,7 +114,7 @@ public class ConExApp {
 		}					
 
 		catch (IOException ex) { 
-			logger.log(Level.WARNING, "Exception occured ", ex);
+			System.out.println("An IOException occurred for file " + fileName);
 		}
 		return Optional.empty(); 	
 
@@ -124,6 +126,8 @@ public class ConExApp {
 	 * @return
 	 */
 	public static Function<String, String> projectConfigParsing(String sepearator, int partNo) {
+		
+		logger.finer("Project config Parsing used");
 		Function<String, String> part
 		= input -> { 
 			String[] parts = input.split(sepearator);
@@ -137,6 +141,7 @@ public class ConExApp {
 	 * @return Function with currency code as a key for the map
 	 */
 	private static Function<String, String> keyMapper(String sepearator, int partNo) {
+		
 		Function<String, String> keyMapper = input -> {
 			String[] parts = input.split(sepearator);
 			String[] firstPart = parts[partNo].split(" ");

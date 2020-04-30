@@ -2,6 +2,7 @@ package ya.java.effective.HQ_MoneyService;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class HQApp_Support {
 
@@ -10,6 +11,13 @@ public class HQApp_Support {
 		input.useDelimiter(System.getProperty("line.separator"));
 	}
 
+	   // Set up a logger
+		private static Logger logger;
+
+		static{
+			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+		}
+		
 	static String SiteChoice() {
 		
 		String north = "NORTH";
@@ -32,7 +40,7 @@ public class HQApp_Support {
 			try {
 				choice = Integer.parseInt(Site_choice);
 			}catch(NumberFormatException e) {
-				//logger.warning("Your choice " + Userchoice + " is not accepted!");
+				System.out.println("Your choice " + Site_choice + " is not accepted!");
 				ok = false;
 			}
 
@@ -73,7 +81,7 @@ public class HQApp_Support {
 			try {
 				choice = Integer.parseInt(Period_choice);
 			}catch(NumberFormatException e) {
-				//logger.warning("Your choice " + Userchoice + " is not accepted!");
+				System.out.println("Your choice " + Period_choice + " is not accepted!");
 				ok = false;
 			}
 
@@ -156,6 +164,7 @@ public class HQApp_Support {
 
 	static void printingChoiceForStats(String siteChoice,String periodChoice,String startDayPeriod,String currencyCode) {
 
+		logger.finer("Printing choice for stats Used");
 		System.out.println("----------------------------------------------------------- ");
 
 		System.out.println("Choice for statistics: ");

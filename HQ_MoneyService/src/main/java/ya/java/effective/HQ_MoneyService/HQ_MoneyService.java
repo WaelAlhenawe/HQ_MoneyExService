@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import affix.java.effective.moneyservice.Transaction;
@@ -26,12 +27,12 @@ public class HQ_MoneyService implements HQ{
 	private final Map<String, Map<LocalDate, List <Transaction>>> result; 
 	private final Map<LocalDate, Map<String, Double>> currencyMap;
 
-	// Set up a logger
-	//	private static Logger logger;
+	   // Set up a logger
+		private static Logger logger;
 
-	//	static{
-	//		logger = Logger.getLogger("ya.java.effective.moneyservice");
-	//	}
+		static{
+			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+		}
 
 
 	/**
@@ -47,6 +48,9 @@ public class HQ_MoneyService implements HQ{
 
 	@Override
 	public void filteredTran(Request staticRequest, String location) {
+		
+		logger.finer(" Processing -> filter Transaction");
+		
 		Map <LocalDate, List<Transaction>> temp = new TreeMap<>();
 		for( String s : staticRequest.getSite()) {
 			for (LocalDate date = staticRequest.getDate(); 
@@ -61,8 +65,7 @@ public class HQ_MoneyService implements HQ{
 							.collect(Collectors.toMap(keyMapper(), valueMapper(staticRequest.getCurrency()))));
 
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println("IOException Occured "+e1);
 				}
 			}
 			this.result.putIfAbsent(s.toUpperCase(), temp);
@@ -76,6 +79,9 @@ public class HQ_MoneyService implements HQ{
 	 * @return Function with currency code as a key for the map
 	 */
 	private static Function<String, LocalDate> keyMapper() {
+		
+		logger.finer("KeyMapper used");
+		
 		Function<String, LocalDate> keyMapper = input -> {
 			String[] parts = input.split("_");
 			String[] subParts = parts[2].split("\\.");
@@ -91,6 +97,9 @@ public class HQ_MoneyService implements HQ{
 	 * @return
 	 */
 	private static Function<String, List<Transaction>> valueMapper(String currencyCode) {
+		
+		logger.finer("Value Mapper used");
+		
 		Function<String, List<Transaction>> valueMapper = input -> {
 			List<Transaction>temp = Collections.emptyList();
 			if (currencyCode.equals("ALL") ) {
@@ -473,13 +482,14 @@ public class HQ_MoneyService implements HQ{
 	@SuppressWarnings("unchecked")
 	public static List<Transaction> readObject(String filename){
 
+		logger.finer(" Reading object (Deserializtion) used");
 		List<Transaction> transactionList = null;
 
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))){
 			transactionList = (List<Transaction>)ois.readObject();
 		}
 		catch(IOException | ClassNotFoundException ioe){
-			//			logger.warning("Exception occurred during deserialization");
+			
 			System.out.println("Exception occurred during deserialization");
 		} 
 
@@ -490,6 +500,7 @@ public class HQ_MoneyService implements HQ{
 
 	static void presentFileContents(List<Transaction> transactionList){
 
+	     logger.finer("Presenting File contents used");	
 		//		System.out.println("\nDEBUG: presenting file content:\n");
 
 		for(int i = 0; i < transactionList.size(); i++) {
@@ -499,6 +510,9 @@ public class HQ_MoneyService implements HQ{
 
 
 	public static int 	dayCounter (String duration) {
+		
+		logger.finer("Day Counter used");
+		
 		int x = 0 ;
 		if(duration.equalsIgnoreCase("DAY")) {
 			x = 1; 

@@ -3,6 +3,9 @@ package ya.java.effective.HQ_MoneyService;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Logger;
+
+
 
 /**
  * @author wael + robin & batman and mr Boba & SuperMan
@@ -11,11 +14,25 @@ import java.util.Scanner;
 public class HQ_App 
 {
 //	static Map<String, Double> currencyMap = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt").orElse(Collections.emptyMap());
-	//	private static Logger logger;
+	
 	static Scanner input = new Scanner(System.in);
 
+	    // Set up a logger
+		private static Logger logger;
+
+		static{
+			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+		}
+		
 	public static void main( String[] args )
 	{
+		// Set up a logger
+		LogHelper.buildLog();
+
+		// Start logging using a simple INFO message
+		logger.fine("Starting test");  
+
+		
 		System.out.println( "HQ MoneyService\n---------------------\n" );
 
 		String SiteChoice =  HQApp_Support.SiteChoice();
@@ -41,7 +58,11 @@ public class HQ_App
 		
 //		HQ_MoneyService.searchFilter(SiteChoice, PeriodChoice, StartDay_Period, Currency, path);
 
-
+		
+		
+		// End logging using a simple INFO message
+				logger.fine("Test completed");
+		
 	}
 
 

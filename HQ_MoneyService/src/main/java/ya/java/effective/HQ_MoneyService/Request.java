@@ -2,6 +2,7 @@ package ya.java.effective.HQ_MoneyService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Request {
 
@@ -9,6 +10,16 @@ public class Request {
 	private final String duration;
 	private final LocalDate date;
 	private final String currency;
+	
+	   // Set up a logger
+		private static Logger logger;
+
+		static{
+			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+		}
+	
+	
+	
 	/**
 	 * @param site
 	 * @param duration
@@ -51,6 +62,9 @@ public class Request {
 	}
 	@Override
 	public int hashCode() {
+		
+		logger.finest("Request hash code used ");
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
@@ -61,6 +75,9 @@ public class Request {
 	}
 	@Override
 	public boolean equals(Object obj) {
+		
+		logger.finest("Request equals used ");
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
