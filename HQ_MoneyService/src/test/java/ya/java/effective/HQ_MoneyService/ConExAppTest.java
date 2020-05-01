@@ -4,15 +4,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import affix.java.effective.moneyservice.Transaction;
 
 public class ConExAppTest {
 
@@ -99,10 +95,10 @@ public class ConExAppTest {
 	public void testConExApp5() {
 
 		// file which exist in the root of the project
-		Optional<Map<String, Double>> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
+		Map<String, Double> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
 
 		boolean ok = false;
-		if(map.isPresent()) {
+		if(!map.equals(null)) {
 			ok = true;  
 
 		}
@@ -113,25 +109,25 @@ public class ConExAppTest {
 	public void testConExApp6() {
 
 		// file which does not exist in the root of the project
-		Optional<Map<String, Double>> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-09-01.txt");
+		Map<String, Double> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-09-01.txt");
 
 		boolean ok = false;
-		if(map.isPresent()) {
+		if(!map.equals(null)) {
 			ok = true;  
 
 		}
-		assertFalse(ok);	
+		assertTrue(ok);		
 	}
 
 	@Test
 	public void testConExApp7() {
 
 
-		Optional<Map<String, Double>> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
+		Map<String, Double> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
 
 		Double d = 0.0;
-		if(map.isPresent()) {
-			d = map.get().get("AUD") ;
+		if(!map.equals(null)) {
+			d = map.get("AUD") ;
 
 		}
 		assertTrue(d==6.0501);
@@ -141,11 +137,11 @@ public class ConExAppTest {
 	public void testConExApp8() {
 
 
-		Optional<Map<String, Double>> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
+		Map<String, Double> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
 
 		Double d = 0.0;
-		if(map.isPresent()) {
-			d = map.get().get("EUR") ;
+		if(!map.equals(null) && !map.isEmpty()) {
+			d = map.get("EUR") ;
 
 		}
 		assertFalse(d==6.0501);
@@ -156,10 +152,10 @@ public class ConExAppTest {
 	public void testConExApp9() {
 
 
-		Optional<Map<String, Double>> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
+		Map<String, Double> map = ConExApp.readCurrencyConfig("CurrencyConfig_2020-04-01.txt");
 
 		boolean ok = false;
-		if(map.get().containsKey("USD")) {
+		if(map.containsKey("USD")) {
 			ok = true;
 		};
 

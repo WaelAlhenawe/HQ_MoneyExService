@@ -42,7 +42,6 @@ public class HQ_App
 		String StartDay_Period = HQApp_Support.StartDay_Period();
 		String statisticType = HQApp_Support.StatisticType();
 		Map<LocalDate, Map<String, Double>> currencyMap = ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();
-
 		String Currency = HQApp_Support.currencyChoice(currencyMap.get(LocalDate.parse(StartDay_Period)) );
 		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), Currency);
 		String path = HQApp_Support.filePath();

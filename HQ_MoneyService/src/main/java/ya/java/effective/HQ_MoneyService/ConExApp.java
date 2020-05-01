@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -80,27 +82,31 @@ public class ConExApp {
 	public static Optional<Map<LocalDate, Map<String, Double>>> readCurrencyConfigFiles(String duration, LocalDate startDate,String filesLocations) {
 
 		logger.finer("Creating <Map<LocalDate, Map<String, Double>>> from  Currency Config files");
-		
-		Map<LocalDate, Map<String, Double>> maintemp = new TreeMap<>();	
 
+		Map<LocalDate, Map<String, Double>> maintemp = new TreeMap<>();	
+		List<String> temp = new ArrayList<String>();
 
 		for (LocalDate date = startDate; 
 				date.isBefore(startDate.plusDays(HQ_MoneyService.dayCounter(duration))); 
 				date = date.plusDays(1)){
 			LocalDate tempDate = date;
 			try {
-				maintemp.putAll( Files.walk(Paths.get(filesLocations))
+				temp = ( Files.walk(Paths.get(filesLocations))
 						.map(filePath -> filePath.getFileName().toString())
 						.filter(fileName-> fileName.contains(tempDate.toString()))
 						.filter(fileName-> fileName.contains("CurrencyConfig_"))
-						.collect(Collectors.toMap(k->tempDate, v-> readCurrencyConfig(v.toString()).get())));
+						.collect(Collectors.toList()));
 
 			} catch (IOException e1) {
 				System.out.println("An IOException occurred " + e1);
-				
+
+			}
+			for (String x : temp) {
+				maintemp.putIfAbsent(tempDate, readCurrencyConfig(x));
 			}
 		}
 		return Optional.of(maintemp);
+
 	}
 
 
@@ -109,73 +115,75 @@ public class ConExApp {
 	/**
 	 * This method read the Currency Config file and sets application constants
 	 * @param fileName is the name of the currencyConfig file
-	 * @return Optional Map Holding Currency Config( Currency Code as Key and Double Value).
+	 * @return Map Holding Currency Config( Currency Code as Key and Double Value).
 	 */
-	public static Optional<Map<String, Double>> readCurrencyConfig(String fileName) {
-
-		logger.finer("Reading "+ fileName +   "config file");
-
+	static Map<String, Double> readCurrencyConfig(String fileName) {
 		Predicate<String> notValue = (String input) -> { return input.contains(Semicolon_Separator);};
-		Path projectConfigPath = Paths.get(fileName);
-		try (Stream<String> currencyRateStream = Files.lines(projectConfigPath).filter(notValue);) {
-			return Optional.ofNullable(currencyRateStream.collect(Collectors.toMap
-					(keyMapper(Semicolon_Separator, Currency_Code_Place), valueMapper(Semicolon_Separator, Currency_Rate_Place))));
-		}					
+			logger.finer("Reading "+ fileName +   "config file");
 
-		catch (IOException ex) { 
-			System.out.println("An IOException occurred for file " + fileName);
+			Path projectConfigPath = Paths.get(fileName);
+			try (Stream<String> currencyRateStream = Files.lines(projectConfigPath).filter(notValue);) {
+				return currencyRateStream.collect(Collectors.toMap
+						(keyMapper(Semicolon_Separator, Currency_Code_Place), valueMapper(Semicolon_Separator, Currency_Rate_Place)));
+			}					
+
+			catch (IOException ex) { 
+				System.out.println("An IOException occurred for file " + fileName);
+			}
+			return Collections.emptyMap(); 
 		}
-		return Optional.empty(); 	
 
-	}
+	
 
-	/**
-	 * This method is helping method for parsing The Project Config File 
-	 * @param separator for pars the line based on it.  
-	 * @param partNo Which index number should get it back;
-	 * @return Function<String, String> with the specific part for use in Stream
-	 */
-	public static Function<String, String> helpToParsing(String sepearator, int partNo) {
-		
-		logger.finer("Project config Parsing used");
-		Function<String, String> part
-		= input -> { 
-			String[] parts = input.split(sepearator);
-			return parts[partNo].trim();};
-			return part;
-	}
 
-	/**
-	 * This method is a keyMaper for building the Currency Map
-	 * @param separator for pars the line based on it.  
-	 * @param partNo Which index number should get it back;
-	 * @return Function<String, String> with the specific part as String for use in Stream
-	 */
-	private static Function<String, String> keyMapper(String sepearator, int partNo) {
-		
-		Function<String, String> keyMapper = input -> {
-			String[] parts = input.split(sepearator);
-			String[] firstPart = parts[partNo].split(" ");
-			return firstPart[partNo-1].strip();};
-			return keyMapper;
-	}
 
-	/**
-	 * This method is a valueMaper for building the Currency Map
-	 * @param separator for pars the line based on it.  
-	 * @param partNo Which index number should get it back;
-	 * @return Function<String, Currency> with the a Currency Object for use in Stream
-	 */
-	private static Function<String, Double> valueMapper(String sepearator, int partNo) {
-		Function<String, Double> valueMapper = input -> {
-			String[] parts = input.split(sepearator);
-			String[] currency = parts[partNo-1].split(" ");
-			double ratePart = Double.parseDouble(parts[partNo].strip());
-			double rate = (Integer.parseInt(currency[0].strip()) == 1)? ratePart : ratePart/Integer.parseInt(currency[0].strip());
+/**
+ * This method is helping method for parsing The Project Config File 
+ * @param separator for pars the line based on it.  
+ * @param partNo Which index number should get it back;
+ * @return Function<String, String> with the specific part for use in Stream
+ */
+public static Function<String, String> helpToParsing(String sepearator, int partNo) {
 
-			return rate;
-		};
-		return valueMapper;}
+	logger.finer("Project config Parsing used");
+	Function<String, String> part
+	= input -> { 
+		String[] parts = input.split(sepearator);
+		return parts[partNo].trim();};
+		return part;
+}
+
+/**
+ * This method is a keyMaper for building the Currency Map
+ * @param separator for pars the line based on it.  
+ * @param partNo Which index number should get it back;
+ * @return Function<String, String> with the specific part as String for use in Stream
+ */
+private static Function<String, String> keyMapper(String sepearator, int partNo) {
+
+	Function<String, String> keyMapper = input -> {
+		String[] parts = input.split(sepearator);
+		String[] firstPart = parts[partNo].split(" ");
+		return firstPart[partNo-1].strip();};
+		return keyMapper;
+}
+
+/**
+ * This method is a valueMaper for building the Currency Map
+ * @param separator for pars the line based on it.  
+ * @param partNo Which index number should get it back;
+ * @return Function<String, Currency> with the a Currency Object for use in Stream
+ */
+private static Function<String, Double> valueMapper(String sepearator, int partNo) {
+	Function<String, Double> valueMapper = input -> {
+		String[] parts = input.split(sepearator);
+		String[] currency = parts[partNo-1].split(" ");
+		double ratePart = Double.parseDouble(parts[partNo].strip());
+		double rate = (Integer.parseInt(currency[0].strip()) == 1)? ratePart : ratePart/Integer.parseInt(currency[0].strip());
+
+		return rate;
+	};
+	return valueMapper;}
 
 
 }
