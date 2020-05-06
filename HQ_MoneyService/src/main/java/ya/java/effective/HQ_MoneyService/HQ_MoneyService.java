@@ -33,6 +33,9 @@ public class HQ_MoneyService implements HQ{
 
 	// Set up a logger
 	private static Logger logger;
+	private static int  One_day = 1;
+	private static int  One_Week = 7;
+	private static int  One_Month = 30;
 
 
 	static{
@@ -158,13 +161,13 @@ public class HQ_MoneyService implements HQ{
 							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*1.005d);
 						}
 						else {
-							buySellAmount[0] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*1.005d);
+							buySellAmount[0] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1+ConExApp.Commission));
 						}
 					}
 					if( Tra.getMode().equals(TransactionMode.SELL)) {
 						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
 							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0];
-							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*0.995d);
+							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1-ConExApp.Commission));
 						}
 						else {
 							buySellAmount[1] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*0.995d);
@@ -225,13 +228,13 @@ public class HQ_MoneyService implements HQ{
 
 		int x = 0 ;
 		if(duration.equalsIgnoreCase("DAY")) {
-			x = 1; 
+			x = One_day; 
 		}
 		if(duration.equalsIgnoreCase("WEEK")) {
-			x = 7;
+			x = One_Week;
 		}
 		if(duration.equalsIgnoreCase("MONTH")) {
-			x = 30;
+			x = One_Month;
 		}
 		return x;
 	}

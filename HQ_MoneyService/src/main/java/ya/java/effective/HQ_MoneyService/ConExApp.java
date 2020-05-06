@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,7 +40,10 @@ public class ConExApp {
 	 * Currency Rate Place in the CurrencyConfig File
 	 */
 	public static final int Currency_Rate_Place = 3;
-
+	/**
+	 * Commission value;	
+	 */
+	public static final double Commission  = 0.005d;
 
 
 	// Set up a logger
@@ -185,6 +189,22 @@ private static Function<String, Double> valueMapper(String sepearator, int partN
 	};
 	return valueMapper;}
 
+	static List<String> availableCurrency(Map<LocalDate, Map<String, Double>> currencyMap){
+		List<String> result = new ArrayList<>();
+		Iterator<Map.Entry<LocalDate, Map<String, Double>>> iterator = currencyMap.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<LocalDate, Map<String, Double>> entry = iterator.next();
+			Iterator<Map.Entry<String, Double>> iterator2 = entry.getValue().entrySet().iterator();
+				while (iterator2.hasNext()) {
+					Map.Entry<String, Double> entry2 = iterator2.next();
+					if(!result.contains(entry2.getKey())) {
+					result.add(entry2.getKey());
+				}
+			}
+		}
+		return result;
+		
+	}
 
 }
 
