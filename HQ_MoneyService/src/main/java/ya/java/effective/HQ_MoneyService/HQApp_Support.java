@@ -27,6 +27,7 @@ public class HQApp_Support {
 
 	static String SiteChoice() {
 
+		logger.finer(" Get SiteChoice from the User");
 		String north = "NORTH";
 		String center = "CENTER";
 		String south = "SOUTH";
@@ -78,6 +79,7 @@ public class HQApp_Support {
 
 	static String PeriodChoice() {
 
+		logger.finer(" Get Period Choice from the User");
 		String day = "DAY";
 		String week = "WEEK";
 		String month = "MONTH";
@@ -120,6 +122,8 @@ public class HQApp_Support {
 	}	
 
 	static String StartDay_Period() {
+		
+		logger.finer(" Get start Day Period  from the User for the statistics ");
 		System.out.print("");
 		System.out.print("Enter start day of Period:\t");
 		String StartDay_Period= input.next();
@@ -128,6 +132,8 @@ public class HQApp_Support {
 
 	static String currencyChoice(List<String> availableCurrency) {
 
+		logger.finer(" Get the currency choice from the User");
+		
 		String Currency;
 		boolean ok;
 		do {
@@ -182,6 +188,7 @@ public class HQApp_Support {
 	}
 
 	static String StatisticType() {
+		logger.finer("Get the Statistics Type [ Transactions List / Profits ] for the specific Day/Period from the User ");
 		String transactionList = "Transactions";
 		String profitList = "Profits";
 		String statisticType = "";

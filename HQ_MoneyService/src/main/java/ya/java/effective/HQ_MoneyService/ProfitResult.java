@@ -5,6 +5,8 @@ package ya.java.effective.HQ_MoneyService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
+
 
 
 /**
@@ -20,7 +22,12 @@ import java.time.format.DateTimeFormatter;
 	final String siteName;
 	final String currencyCode;
 	
-	
+	// Set up a logger
+		private static Logger logger;
+
+		static{
+			logger = Logger.getLogger("ya.java.effective.HQ_MoneyService");
+		}
 	
 	
 	/**
@@ -78,6 +85,8 @@ import java.time.format.DateTimeFormatter;
 	}
 	@Override
 	public int hashCode() {
+		
+		logger.finest("ProfitResult hash code used ");
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + buy;
@@ -90,6 +99,9 @@ import java.time.format.DateTimeFormatter;
 	}
 	@Override
 	public boolean equals(Object obj) {
+		
+		logger.finest("ProfitResult equal used ");
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
