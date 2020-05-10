@@ -82,6 +82,7 @@ public class HQ_MoneyService implements HQ{
 					System.out.println("IOException Occured "+e1);
 				}
 			}
+			logger.fine("Map<String, Map<LocalDate, List <Transaction>>> populated based on the Request from the HQ");
 			this.result.putIfAbsent(s.toUpperCase(), temp);
 		}
 
@@ -179,9 +180,11 @@ public class HQ_MoneyService implements HQ{
 						}				
 					}
 					buySellMap.put(Tra.getCurrencyCode(), buySellAmount);
-					logger.finest("buySellMap is populated");
+					logger.finest("buySellMap [ Map<String, int[]> ] is populated with " + Tra.getCurrencyCode()+",  "
+							                                                       + "[ " +buySellAmount[0]+", "+buySellAmount[1]+" ] ");
+					                                                                          
 
-					}
+					} 
 				Iterator<Map.Entry<String, int []>> iterator3 = buySellMap.entrySet().iterator();
 				while (iterator3.hasNext()) {
 					Map.Entry<String, int []> entry3 = iterator3.next();
