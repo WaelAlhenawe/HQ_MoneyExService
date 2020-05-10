@@ -165,6 +165,7 @@ public static Function<String, String> helpToParsing(String sepearator, int part
  */
 private static Function<String, String> keyMapper(String sepearator, int partNo) {
 
+	logger.finer("KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]");
 	Function<String, String> keyMapper = input -> {
 		String[] parts = input.split(sepearator);
 		String[] firstPart = parts[partNo].split(" ");
@@ -179,6 +180,9 @@ private static Function<String, String> keyMapper(String sepearator, int partNo)
  * @return Function<String, Currency> with the a Currency Object for use in Stream
  */
 private static Function<String, Double> valueMapper(String sepearator, int partNo) {
+	
+	logger.finer("ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]");
+	
 	Function<String, Double> valueMapper = input -> {
 		String[] parts = input.split(sepearator);
 		String[] currency = parts[partNo-1].split(" ");
@@ -190,6 +194,8 @@ private static Function<String, Double> valueMapper(String sepearator, int partN
 	return valueMapper;}
 
 	static List<String> availableCurrency(Map<LocalDate, Map<String, Double>> currencyMap){
+		logger.finer("Get the List<String> (available currency) from the currencyMap");
+		
 		List<String> result = new ArrayList<>();
 		Iterator<Map.Entry<LocalDate, Map<String, Double>>> iterator = currencyMap.entrySet().iterator();
 		while (iterator.hasNext()) {
