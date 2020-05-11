@@ -1,0 +1,994 @@
+2020-05-01 02:55:06 ya.java.effective.HQ_MoneyService.HQ_App main
+FINE: Starting test
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfigFiles
+FINER: Creating <Map<LocalDate, Map<String, Double>>> from  Currency Config files
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01.txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01.txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01.txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01 (2).txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01.txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01.txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01.txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-01 (1).txtconfig file
+2020-05-01 02:55:18 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-02.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-02.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-02.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-02.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-03.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-03.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-03.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-03.txtconfig file
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:19 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-06.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-06.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-06.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-06.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-07.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-07.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-07.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-07.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-08.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-08.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-08.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-08.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-09.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-09.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-09.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-09.txtconfig file
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:20 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-14.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-14.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-14.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-14.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-15.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-15.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-15.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-15.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-16.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-16.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-16.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-16.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-17.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-17.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-17.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-17.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-01 02:55:21 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-01 02:55:22 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:23 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-01 02:55:23 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-01 02:55:23 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-01 02:55:23 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-01 02:55:23 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:23 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.ConExApp readSiteNamesConfig
+FINER: Reading SiteNamesConfig.txtconfig file
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService filteredTran
+FINER:  Processing -> filter Transaction
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:25 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_MoneyService dayCounter
+FINER: Day Counter used
+2020-05-01 02:55:26 ya.java.effective.HQ_MoneyService.HQ_App main
+FINE: Test completed

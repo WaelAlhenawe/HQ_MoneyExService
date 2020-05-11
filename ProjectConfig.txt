@@ -1,0 +1,14 @@
+CurrencyConfig = CurrencyConfig_2020-04-01.txt
+BoxOfCash
+EUR = 3000
+USD = 2000
+GBP = 1500
+NOK = 10000
+DKK = 10000
+CHF = 1500
+RUB = 10000
+AUD = 1500
+JPY = 2000
+SEK = 35000
+End
+ReferenceCurrency = SEK

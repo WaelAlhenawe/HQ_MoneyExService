@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"affix.java.effective.moneyservice"},{"l":"All Packages","url":"allpackages-index.html"}]
