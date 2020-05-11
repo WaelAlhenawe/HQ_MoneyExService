@@ -32,6 +32,7 @@ public class HQApp_Support {
 
 	static String SiteChoice() {
 
+		logger.finer(" Get SiteChoice from the User");
 		String north = "NORTH";
 		String center = "CENTER";
 		String south = "SOUTH";
@@ -78,7 +79,9 @@ public class HQApp_Support {
 		return site;
 	}
 
+
 	static LocalDate PeriodChoice(LocalDate startDate) {
+
 
 		LocalDate period = null;
 		boolean ok;
@@ -176,6 +179,7 @@ public class HQApp_Support {
 
 	}	
 
+
 	static LocalDate StartDay_Period() {
 		String temp;
 		LocalDate startDay = null;
@@ -198,10 +202,13 @@ public class HQApp_Support {
 			}
 		} while (!flag);
 		return  startDay;
+
 	}	
 
 	static String currencyChoice(List<String> availableCurrency) {
 
+		logger.finer(" Get the currency choice from the User");
+		
 		String Currency;
 		boolean ok;
 		do {
@@ -256,6 +263,7 @@ public class HQApp_Support {
 	}
 
 	static String StatisticType() {
+		logger.finer("Get the Statistics Type [ Transactions List / Profits ] for the specific Day/Period from the User ");
 		String transactionList = "Transactions";
 		String profitList = "Profits";
 		String statisticType = "";

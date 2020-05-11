@@ -85,6 +85,7 @@ public class HQ_MoneyService implements HQ{
 					System.out.println("IOException Occured "+e1);
 				}
 			}
+			logger.fine("Map<String, Map<LocalDate, List <Transaction>>> populated based on the Request from the HQ");
 			this.result.putIfAbsent(s.toUpperCase(), temp);
 		}
 
@@ -96,7 +97,7 @@ public class HQ_MoneyService implements HQ{
 	 */
 	private static Function<String, LocalDate> keyMapper() {
 
-		logger.finer("KeyMapper used");
+		logger.finer("KeyMapper used to populate Map <LocalDate, List<Transaction>>");
 
 		Function<String, LocalDate> keyMapper = input -> {
 			String[] parts = input.split("_");
@@ -115,7 +116,7 @@ public class HQ_MoneyService implements HQ{
 	 */
 	private static Function<String, List<Transaction>> valueMapper(String currencyCode) {
 
-		logger.finer("Value Mapper used");
+		logger.finer("Value Mapper used to populate Map <LocalDate, List<Transaction>>");
 
 		Function<String, List<Transaction>> valueMapper = input -> {
 			List<Transaction>temp = Collections.emptyList();
@@ -147,8 +148,10 @@ public class HQ_MoneyService implements HQ{
 	 * @return List of ProfitResult object for profit type of statistic for each currency each day.
 	 */
 	@Override
+
 	public Set<ProfitResult> profitStatistic() {
 		Set<ProfitResult> result = new HashSet<>() ;
+
 		Map<String, int[]> buySellMap = new TreeMap<String, int[]>();
 		Iterator<Map.Entry<String, Map<LocalDate, List <Transaction>>>> iterator = this.result.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -159,6 +162,7 @@ public class HQ_MoneyService implements HQ{
 				for (Transaction Tra : entry2.getValue()) {
 					int buySellAmount [] = new int [] {0,0};
 					if( Tra.getMode().equals(TransactionMode.BUY)) {
+						logger.finest(" Calculating Buy amount");
 						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
 							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1];
 							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0] + 
@@ -169,6 +173,7 @@ public class HQ_MoneyService implements HQ{
 						}
 					}
 					if( Tra.getMode().equals(TransactionMode.SELL)) {
+						logger.finest(" Calculating Sell amount");
 						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
 							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0];
 							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] +
@@ -180,13 +185,16 @@ public class HQ_MoneyService implements HQ{
 						}				
 					}
 					buySellMap.put(Tra.getCurrencyCode(), buySellAmount);
+					logger.finest("buySellMap [ Map<String, int[]> ] is populated with " + Tra.getCurrencyCode()+",  "
+							                                                       + "[ " +buySellAmount[0]+", "+buySellAmount[1]+" ] ");
+					                                                                          
 
-					}
+					} 
 				Iterator<Map.Entry<String, int []>> iterator3 = buySellMap.entrySet().iterator();
 				while (iterator3.hasNext()) {
 					Map.Entry<String, int []> entry3 = iterator3.next();
 					
-					
+					logger.finest(" Profit Details from buySellMap added to the class ProfitResult");
 					result.add(new ProfitResult(entry3.getValue()[0], entry3.getValue()[1], entry2.getKey(), entry.getKey(), entry3.getKey()));
 				}
 				buySellMap.clear();
