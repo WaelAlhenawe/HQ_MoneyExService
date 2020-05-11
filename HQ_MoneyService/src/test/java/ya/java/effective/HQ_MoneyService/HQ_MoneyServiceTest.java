@@ -15,21 +15,16 @@ public class HQ_MoneyServiceTest {
 	@Test(expected = AssertionError.class)
 	public void testHQMoneyService1() {
 
-		LocalDate.parse("2020-04-22");
 
-		final Map<String, Map<LocalDate, List <Transaction>>> result; 
-		//		final Map<LocalDate, Map<String, Double>> currencyMap;
-		LocalDate date = LocalDate.parse("2020-04-22");
 
 		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
+
+		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP", null);
 		Map<LocalDate, Map<String, Double>> currencyMap = ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
 
-		List<Transaction> t = HQ_MoneyService.readObject("Report_SOUTH_2020-04-20.ser");
-//		HQ_MoneyService.presentFileContents(t);
 
 
 		HQ x = new HQ_MoneyService(currencyMap);
@@ -39,66 +34,17 @@ public class HQ_MoneyServiceTest {
 		System.out.println(currencyMap);
 
 		x.printFilteredMap();
-		x.profitStatistic(req);
+		x.profitStatistic();
 
 		Assert.fail();
 	}
 
 
-	@Test
-	public void testHQMoneyService2() {
-
-
-		int dayC = HQ_MoneyService.dayCounter("DAY");
-
-		double result = dayC;
-		double check = 1.0;
-
-		Assert.assertEquals(check, result, 0.00);
-	}
-
-	@Test
-	public void testHQMoneyService3() {
-
-
-		int dayC = HQ_MoneyService.dayCounter("WEEK");
-
-		double result = dayC;
-		double check = 7.0;
-
-		Assert.assertEquals(check, result, 0.00);
-	}
-
-	@Test
-	public void testHQMoneyService4() {
-
-
-		int dayC = HQ_MoneyService.dayCounter("MONTH");
-
-		double result = dayC;
-		double check = 30.0;
-
-		Assert.assertEquals(check, result, 0.00);
-	}
 
 	@Test
 	public void testHQMoneyService5() {
 
-		LocalDate.parse("2020-04-22");
-
-		final Map<String, Map<LocalDate, List <Transaction>>> result; 
-		//		final Map<LocalDate, Map<String, Double>> currencyMap;
-		LocalDate date = LocalDate.parse("2020-04-22");
-
-		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
-		String StartDay_Period = "2020-04-20";
-
-		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
-		Map<LocalDate, Map<String, Double>> currencyMap = ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
-
 		List<Transaction> t = HQ_MoneyService.readObject("Report_SOUTH_2020-04-20.ser");
-//		HQ_MoneyService.presentFileContents(t);
 
 		boolean check = true;
 		if(t.isEmpty()) {
@@ -110,62 +56,42 @@ public class HQ_MoneyServiceTest {
 	@Test
 	public void testHQMoneyService6() {
 
-		LocalDate.parse("2020-04-22");
-
-		final Map<String, Map<LocalDate, List <Transaction>>> result; 
-		//		final Map<LocalDate, Map<String, Double>> currencyMap;
-		LocalDate date = LocalDate.parse("2020-04-22");
-
-		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
 		Map<LocalDate, Map<String, Double>> currencyMap = ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
 
 		boolean check = true;
 		if(currencyMap.isEmpty()) {
 			check = false;
 		}
-		Assert.assertTrue(check);
+		Assert.assertFalse(check);
 	}
 
 
 	@Test
 	public void testHQMoneyService7() {
 
-		LocalDate.parse("2020-04-22");
-
-		final Map<String, Map<LocalDate, List <Transaction>>> result = null; 
-		//		final Map<LocalDate, Map<String, Double>> currencyMap;
-		LocalDate date = LocalDate.parse("2020-04-22");
 
 		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
+
+		Request req = new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP", null);;
 		Map<LocalDate, Map<String, Double>> currencyMap = ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
 
-		List<Transaction> t = HQ_MoneyService.readObject("Report_SOUTH_2020-04-20.ser");
-//		HQ_MoneyService.presentFileContents(t);
 
 
 		HQ x = new HQ_MoneyService(currencyMap);
 
 		x.filteredTran(req, "..//");
-//
-//		System.out.println(currencyMap);
-//
+
 		x.printFilteredMap();
-		x.profitStatistic(req);
+		x.profitStatistic();
 
 		boolean check = x.equals(x);
 		
-//		boolean check = true;
-//		if(x.isEmpty()) {
-//			check = false;
-//		}
 		Assert.assertTrue(check);
 	}
 	

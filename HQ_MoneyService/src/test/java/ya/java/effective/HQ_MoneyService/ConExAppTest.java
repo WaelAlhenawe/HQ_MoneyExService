@@ -16,13 +16,12 @@ public class ConExAppTest {
 	@Test
 	public void testConExApp1() {
 
-		LocalDate.parse("2020-04-22");
 
 		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
+		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP", null);
 		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
 
 		Function<String, String> part
@@ -43,14 +42,12 @@ public class ConExAppTest {
 	@Test(expected = AssertionError.class)
 	public void testConExApp2() {
 
-		LocalDate.parse("2020-04-22");
-
 		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
-		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
+		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP", null);
+		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();		
 
 		ConExApp.readCurrencyConfig("dunmmy.txt");
 
@@ -63,11 +60,11 @@ public class ConExAppTest {
 		LocalDate date = LocalDate.parse("2020-03-22");
 
 		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
-		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
+		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP", null);
+		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();		
 
 		ConExApp.readCurrencyConfigFiles(PeriodChoice, date, "../../");
 
@@ -77,14 +74,12 @@ public class ConExAppTest {
 	@Test(expected = AssertionError.class)
 	public void testConExApp4() {
 
-		LocalDate.parse("2020-04-22");
-
 		String SiteChoice = "ALL";
-		String PeriodChoice = "DAY";
+		LocalDate PeriodChoice = LocalDate.parse("2020-04-20");
 		String StartDay_Period = "2020-04-20";
 
-		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP");
-		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();	
+		new Request(SiteChoice, PeriodChoice, LocalDate.parse(StartDay_Period), "GBP", null);
+		ConExApp.readCurrencyConfigFiles(PeriodChoice, LocalDate.parse(StartDay_Period), "..//").get();		
 
 		ConExApp.readSiteNamesConfig("dunmmy.txt");
 

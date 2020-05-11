@@ -1,7 +1,8 @@
 package ya.java.effective.HQ_MoneyService;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -9,6 +10,10 @@ import java.util.logging.Logger;
  * 
  * This is a support class for user interaction using CLI
  * @author Team South
+ *
+ */
+/**
+ * @author wael
  *
  */
 public class HQApp_Support {
@@ -70,20 +75,12 @@ public class HQApp_Support {
 				System.out.println("Wrong Choice!");
 			}
 		}while(!ok); 
-
-
-
 		return site;
 	}
 
-	static String PeriodChoice() {
+	static LocalDate PeriodChoice(LocalDate startDate) {
 
-		String day = "DAY";
-		String week = "WEEK";
-		String month = "MONTH";
-		String period = null;
-
-		int choice =0;
+		LocalDate period = null;
 		boolean ok;
 		do {
 			ok = true;
@@ -92,38 +89,115 @@ public class HQApp_Support {
 			System.out.println("1 - DAY ");
 			System.out.println("2 - WEEK");
 			System.out.println("3 - MONTH");
+			System.out.println("4 - Specific Date");
+			System.out.println("");
+
+			System.out.println("0 - Exit");
 
 			System.out.print("Enter Your Choice:\t");
 			String Period_choice = input.next();
-			try {
-				choice = Integer.parseInt(Period_choice);
-			}catch(NumberFormatException e) {
-				System.out.println("Your choice " + Period_choice + " is not accepted!");
-				ok = false;
-			}
 
-			if(choice == 1) {
-				period = day;
-			}else if(choice == 2) {
-				period = week;
-			}else if(choice == 3) {
-				period = month;
+			if(Period_choice.equals("1")) {
+				period = startDate.plusDays(1);
+			}else if(Period_choice.equals("2")) {
+				period = startDate.plusWeeks(1);
+			}else if(Period_choice.equals("3")) {
+				period = startDate.plusMonths(1);
+			}else if(Period_choice.equals("4")) {
+				Boolean flag = false;  
+				do {
+					System.out.print("Please Enter the Date (yyyy-mm-dd) OR (0) to Go Back:\t");
+					String endDate = input.next();
+					if ( endDate.equals("0")) {
+						flag = true;
+						ok = false;
+					}else {
+						try {
+							period = LocalDate.parse(endDate);
+							period.plusDays(1);
+							flag = true;
+						} catch (Exception e) {
+							logger.fine("Worng date input" + endDate + e);
+							flag = false;
+							ok = false;
+							System.out.format("Wrong Input!%n");
+						} 
+					}
+				} while (!flag);
+			}else if(Period_choice.equals("0")) {
+				System.exit(0);
 			}else {
 				ok = false;
+				logger.fine("Wrong Period Choice" + Period_choice);
+				System.out.println("Wrong Choice!");
+			}
+		}while(!ok); 
+		return period;
+	}	
+
+	static ProfitStatisticMode profitStatisticMode() {
+
+		boolean ok;
+		do {
+			ok = true;
+
+			System.out.println("\nPlease Choose a Period Statistic Summarizes Mode");
+			System.out.println("1 - Daily");
+			System.out.println("2 - Weekly");
+			System.out.println("3 - Monthly");
+			System.out.println("4 - The whole Period");
+			System.out.println("");
+
+			System.out.println("0 - Exit");
+			System.out.print("Enter Your Choice:\t");
+
+			String Period_choice = input.next();
+
+			if(Period_choice.equals("1")) {
+				return ProfitStatisticMode.DAILY;
+			}else if(Period_choice.equals("2")) {
+				return ProfitStatisticMode.WEEKLY;
+			}else if(Period_choice.equals("3")) {
+				return ProfitStatisticMode.MONTHLY;
+			}else if(Period_choice.equals("4")) {
+				return ProfitStatisticMode.ENTIRELY;
+			}else if(Period_choice.equals("0")) {
+				System.exit(0);
+			
+			}else {
+				ok = false;
+				logger.fine("Wrong Period Choice" + Period_choice);
 				System.out.println("Wrong Choice!");
 			}
 		}while(!ok); 
 
 
-		return period;
+		return null;
 
 	}	
 
-	static String StartDay_Period() {
-		System.out.print("");
-		System.out.print("Enter start day of Period:\t");
-		String StartDay_Period= input.next();
-		return  StartDay_Period;
+	static LocalDate StartDay_Period() {
+		String temp;
+		LocalDate startDay = null;
+		Boolean flag = false;
+		do {
+			System.out.print("Enter start day of the Statistic OR (0) To Exit:\t");
+			temp = input.next();
+			if ( temp.equals("0")) {
+				System.exit(0);
+			}else {
+			try {
+				startDay = LocalDate.parse(temp);
+				flag = true;
+
+			} catch (Exception e) {
+				logger.fine("Worng date input" + temp + e);
+				flag = false;
+				System.out.format("Wrong Input!%n");
+			} 
+			}
+		} while (!flag);
+		return  startDay;
 	}	
 
 	static String currencyChoice(List<String> availableCurrency) {
@@ -193,7 +267,7 @@ public class HQApp_Support {
 
 			System.out.format("%nPlease Choose Statistic Type%n");
 			System.out.println("1 - Transaction List ");
-			System.out.println("2 - Profits For Currency/ies");
+			System.out.println("2 - Profit For Currency/ies");
 
 			System.out.print("Enter Your Choice:\t");
 			String Period_choice = input.next();

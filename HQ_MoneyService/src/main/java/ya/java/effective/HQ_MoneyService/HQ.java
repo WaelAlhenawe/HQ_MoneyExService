@@ -1,7 +1,10 @@
 
 package ya.java.effective.HQ_MoneyService;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -26,11 +29,15 @@ public interface HQ {
 	/**
 	 *	This method is used to build a List of ProfitResult object for profit type of statistic for each currency each day.
 	 * @param request holding site, date from, duration, Currency with (All) available as a choice  
-	 * @return List of ProfitResult object for profit type of statistic for each currency each day.
+	 * @return Set of ProfitResult object for profit type of statistic for each currency each day.
 	 */
-	public List<ProfitResult> profitStatistic(Request request);
+	public Set<ProfitResult> profitStatistic();
 
 
+
+	default void printSummarizeProfitStatistic(ProfitStatisticMode period, Set<ProfitResult> temp, LocalDate endDate,
+			LocalDate startDate) {
+	}
 
 
 

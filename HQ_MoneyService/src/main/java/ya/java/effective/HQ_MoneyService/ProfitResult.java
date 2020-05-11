@@ -13,12 +13,12 @@ import java.time.format.DateTimeFormatter;
  * 
  */ 
  public class ProfitResult {
-	final int buy;
-	final int sell;
-	final LocalDate timeStamp;
-	final int profit;
-	final String siteName;
-	final String currencyCode;
+	private final int buy;
+	private final int sell;
+	private final LocalDate timeStamp;
+	private final int profit;
+	private final String siteName;
+	private final String currencyCode;
 	
 	
 	
@@ -40,6 +40,7 @@ import java.time.format.DateTimeFormatter;
 		this.siteName = siteName;
 		this.currencyCode = currencyCode;
 	}
+		
 	/**
 	 * @return the buy
 	 */
@@ -76,6 +77,7 @@ import java.time.format.DateTimeFormatter;
 	public synchronized String getCurrencyCode() {
 		return currencyCode;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -123,12 +125,9 @@ import java.time.format.DateTimeFormatter;
 
 	@Override
 	public String toString() {
-		return String.format("%nStatistics for site %s - Currency %s  - Date %s %n Total  SELL\t %d \tSEK %n Total   BUY\t %d \tSEK %n Profit    \t %d \tSEK%n",
+		return String.format("%nStatistics for site %s - Currency %s  - Date %s %n Total  SELL\t %d \t SEK %n Total   BUY\t %d \t SEK %n Profit    \t %d \t SEK%n",
 				siteName, currencyCode, (DateTimeFormatter.ISO_DATE) 
 				.format(timeStamp),  sell, buy, profit);
 	}
-	
-	
-	
 	
 }

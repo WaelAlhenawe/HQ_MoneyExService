@@ -14,9 +14,10 @@ import java.util.logging.Logger;
 public class Request {
 
 	private List<String> site = new ArrayList<>();
-	private final String duration;
-	private final LocalDate date;
+	private final LocalDate startDate;
+	private final LocalDate endDate;
 	private final String currency;
+	private final ProfitStatisticMode presentingMode;
 
 	// Set up a logger
 	private static Logger logger;
@@ -33,33 +34,29 @@ public class Request {
 	 * @param currency a String defining the currency code (ie USD)
 	 * conditions if site choice is set to ALL, config should be read for configuration
 	 */
-	public Request(String site, String duration, LocalDate date, String currency) {
+	public Request(String site, LocalDate endDate, LocalDate date, String currency, ProfitStatisticMode presentingMode) {
 		super();
 		if (site.equals("ALL")){
 			this.site = ConExApp.readSiteNamesConfig("SiteNamesConfig.txt").get();
 		}else {
 			this.site.add(site);		}
-		this.duration = duration;
-		this.date = date;
+		this.endDate = endDate;
+		this.startDate = date;
 		this.currency = currency;
+		this.presentingMode = presentingMode;
+		logger.finer("A request Object has been created");
 	}
 	/**
 	 * @return the site
 	 */
-	public synchronized List<String> getSite() {
+	public List<String> getSite() {
 		return site;
 	}
 	/**
 	 * @return the duration
 	 */
-	public synchronized String getDuration() {
-		return duration;
-	}
-	/**
-	 * @return the date
-	 */
-	public synchronized LocalDate getDate() {
-		return date;
+	public LocalDate getEndDate() {
+		return endDate;
 	}
 	/**
 	 * @return the currency
@@ -67,24 +64,31 @@ public class Request {
 	public synchronized String getCurrency() {
 		return currency;
 	}
+	/**
+	 * @return the startDate
+	 */
+	public synchronized LocalDate getStartDate() {
+		return startDate;
+	}
+	/**
+	 * @return the presentingMode
+	 */
+	public synchronized ProfitStatisticMode getPresentingMode() {
+		return presentingMode;
+	}
 	@Override
 	public int hashCode() {
-
-		logger.finest("Request hash code used ");
-
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
+		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + ((presentingMode == null) ? 0 : presentingMode.hashCode());
 		result = prime * result + ((site == null) ? 0 : site.hashCode());
+		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
 		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
-
-		logger.finest("Request equals used ");
-
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -97,28 +101,30 @@ public class Request {
 				return false;
 		} else if (!currency.equals(other.currency))
 			return false;
-		if (date == null) {
-			if (other.date != null)
+		if (endDate == null) {
+			if (other.endDate != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!endDate.equals(other.endDate))
 			return false;
-		if (duration == null) {
-			if (other.duration != null)
-				return false;
-		} else if (!duration.equals(other.duration))
+		if (presentingMode != other.presentingMode)
 			return false;
 		if (site == null) {
 			if (other.site != null)
 				return false;
 		} else if (!site.equals(other.site))
 			return false;
+		if (startDate == null) {
+			if (other.startDate != null)
+				return false;
+		} else if (!startDate.equals(other.startDate))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return String.format("Request [site=%s, duration=%s, date=%s, currency=%s]", site, duration, date, currency);
-	} 
-
-
-
+		return String.format("Request [site=%s, startDate=%s, endDate=%s, currency=%s, presentingMode=%s]", site,
+				startDate, endDate, currency, presentingMode);
+	}
+	
+	
 }

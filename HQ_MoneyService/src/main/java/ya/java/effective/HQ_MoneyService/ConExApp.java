@@ -83,16 +83,14 @@ public class ConExApp {
 	 * @return Optional Map Holding Currency Config for long period ( Localdata the date of the file as a key 
 	 * and Map as value of Currency Code String as a key and Double as a value of each currency).
 	 */
-	public static Optional<Map<LocalDate, Map<String, Double>>> readCurrencyConfigFiles(String duration, LocalDate startDate,String filesLocations) {
+	public static Optional<Map<LocalDate, Map<String, Double>>> readCurrencyConfigFiles(LocalDate endDate, LocalDate startDate,String filesLocations) {
 
 		logger.finer("Creating <Map<LocalDate, Map<String, Double>>> from  Currency Config files");
 
 		Map<LocalDate, Map<String, Double>> maintemp = new TreeMap<>();	
 		List<String> temp = new ArrayList<String>();
 
-		for (LocalDate date = startDate; 
-				date.isBefore(startDate.plusDays(HQ_MoneyService.dayCounter(duration))); 
-				date = date.plusDays(1)){
+		for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)){
 			LocalDate tempDate = date;
 			try {
 				temp = ( Files.walk(Paths.get(filesLocations))

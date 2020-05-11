@@ -6,12 +6,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.logging.Logger;
@@ -33,9 +38,7 @@ public class HQ_MoneyService implements HQ{
 
 	// Set up a logger
 	private static Logger logger;
-	private static int  One_day = 1;
-	private static int  One_Week = 7;
-	private static int  One_Month = 30;
+
 
 
 	static{
@@ -67,8 +70,8 @@ public class HQ_MoneyService implements HQ{
 
 		Map <LocalDate, List<Transaction>> temp = new TreeMap<>();
 		for( String s : staticRequest.getSite()) {
-			for (LocalDate date = staticRequest.getDate(); 
-					date.isBefore(staticRequest.getDate().plusDays(dayCounter(staticRequest.getDuration()))); 
+			for (LocalDate date = staticRequest.getStartDate(); 
+					date.isBefore(staticRequest.getEndDate()); 
 					date = date.plusDays(1)){
 				LocalDate tempDate = date;
 				try {
@@ -144,8 +147,8 @@ public class HQ_MoneyService implements HQ{
 	 * @return List of ProfitResult object for profit type of statistic for each currency each day.
 	 */
 	@Override
-	public List<ProfitResult> profitStatistic(Request staticRequest) {
-		List<ProfitResult> result = new ArrayList<>();
+	public Set<ProfitResult> profitStatistic() {
+		Set<ProfitResult> result = new HashSet<>() ;
 		Map<String, int[]> buySellMap = new TreeMap<String, int[]>();
 		Iterator<Map.Entry<String, Map<LocalDate, List <Transaction>>>> iterator = this.result.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -158,7 +161,8 @@ public class HQ_MoneyService implements HQ{
 					if( Tra.getMode().equals(TransactionMode.BUY)) {
 						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
 							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1];
-							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*1.005d);
+							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0] + 
+									(int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1+ConExApp.Commission));
 						}
 						else {
 							buySellAmount[0] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1+ConExApp.Commission));
@@ -167,10 +171,11 @@ public class HQ_MoneyService implements HQ{
 					if( Tra.getMode().equals(TransactionMode.SELL)) {
 						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
 							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0];
-							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] + (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1-ConExApp.Commission));
+							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] +
+									(int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1-ConExApp.Commission));
 						}
 						else {
-							buySellAmount[1] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*0.995d);
+							buySellAmount[1] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1-ConExApp.Commission));
 
 						}				
 					}
@@ -191,6 +196,38 @@ public class HQ_MoneyService implements HQ{
 
 	}
 
+	@Override
+	public void printSummarizeProfitStatistic(ProfitStatisticMode period, Set<ProfitResult> temp, LocalDate endDate, LocalDate startDate) {
+		Map<ProfitStatisticMode , TemporalAdjuster> ADJUSTERS = new HashMap<>();
+
+		ADJUSTERS.put(ProfitStatisticMode.DAILY, TemporalAdjusters.ofDateAdjuster(d -> d)); // identity
+		ADJUSTERS.put(ProfitStatisticMode.WEEKLY, TemporalAdjusters.previousOrSame(DayOfWeek.of(1)));
+		ADJUSTERS.put(ProfitStatisticMode.MONTHLY, TemporalAdjusters.firstDayOfMonth());
+		ADJUSTERS.put(ProfitStatisticMode.ENTIRELY, TemporalAdjusters.ofDateAdjuster(d->d));
+		//.minusDays(Period.between(startDate, endDate).getDays())
+		Map<LocalDate, List<ProfitResult>> resultDate = temp.stream()
+			    .collect(Collectors.groupingBy(item -> item.getTimeStamp()
+			            .with(ADJUSTERS.get(period))));
+		Iterator<Map.Entry<LocalDate, List<ProfitResult>>> iterator = resultDate.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<LocalDate, List<ProfitResult>> entry = iterator.next();
+			Map<String, List<ProfitResult>> resultCode = entry.getValue().stream().collect(Collectors.groupingBy(item -> item.getCurrencyCode()));
+			Iterator<Map.Entry<String, List<ProfitResult>>> iterator2 = resultCode.entrySet().iterator();
+			while (iterator2.hasNext()) {
+				Map.Entry<String, List<ProfitResult>> entry2 = iterator2.next();
+				int sell = 0, buy = 0;
+				String siteName = "";
+				for (ProfitResult x : entry2.getValue() ) {
+					sell += x.getSell();
+					buy += x.getBuy();
+					siteName = x.getSiteName();
+				}
+				ProfitResult oneResult = new ProfitResult(buy, sell, entry.getKey(),siteName, entry2.getKey());
+				System.out.println(oneResult);
+
+			}
+		}
+	}
 	
 	/**
 	 * Read data from serialized file, as an object
@@ -214,29 +251,6 @@ public class HQ_MoneyService implements HQ{
 		//		presentFileContents(transactionList);
 
 		return (List<Transaction>) transactionList;
-	}
-
-
-	/**
-	 * This helping method to change String inputs to int.
-	 * @param duration (Day, Week, Month)
-	 * @return int based on the string duration.
-	 */
-	public static int 	dayCounter (String duration) {
-
-		logger.finer("Day Counter used");
-
-		int x = 0 ;
-		if(duration.equalsIgnoreCase("DAY")) {
-			x = One_day; 
-		}
-		if(duration.equalsIgnoreCase("WEEK")) {
-			x = One_Week;
-		}
-		if(duration.equalsIgnoreCase("MONTH")) {
-			x = One_Month;
-		}
-		return x;
 	}
 
 
