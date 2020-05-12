@@ -146,7 +146,7 @@ public class HQ_MoneyService implements HQ{
 	 */
 	@Override
 	public void printFilteredMap() {
-		this.result.forEach((k, v )->  System.out.println(k + " : "+ v));
+		this.result.forEach((k, v )->  v.forEach((s)->System.out.println(k + " : "+ s )));
 
 	}
 

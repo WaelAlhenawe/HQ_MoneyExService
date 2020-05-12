@@ -1,0 +1,294 @@
+2020-05-12 12:18:20 ya.java.effective.HQ_MoneyService.HQ_App main
+FINE: Starting test
+2020-05-12 12:18:20 ya.java.effective.HQ_MoneyService.HQApp_Support SiteChoice
+FINER:  Get SiteChoice from the User
+2020-05-12 12:18:27 ya.java.effective.HQ_MoneyService.HQApp_Support StatisticType
+FINER: Get the Statistics Type [ Transactions List / Profits ] for the specific Day/Period from the User 
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfigFiles
+FINER: Creating <Map<LocalDate, Map<String, Double>>> from  Currency Config files
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-20.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-21.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-22.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-23.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-24.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-26.txtconfig file
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:52 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-27.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-28.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp readCurrencyConfig
+FINER: Reading CurrencyConfig_2020-04-29.txtconfig file
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp keyMapper
+FINER: KeyMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp valueMapper
+FINER: ValueMapper used to populate Map<String, Double> [Currency Code as Key and Double Value Exchange rate ]
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.ConExApp availableCurrency
+FINER: Get the List<String> (available currency) from the currencyMap
+2020-05-12 12:18:53 ya.java.effective.HQ_MoneyService.HQApp_Support currencyChoice
+FINER:  Get the currency choice from the User
+2020-05-12 12:18:56 ya.java.effective.HQ_MoneyService.Request <init>
+FINER: A request Object has been created
+2020-05-12 12:18:56 ya.java.effective.HQ_MoneyService.HQ_MoneyService filteredTran
+FINER:  Processing -> filter Transaction
+2020-05-12 12:18:56 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:56 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:56 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService keyMapper
+FINER: KeyMapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService valueMapper
+FINER: Value Mapper used to populate Map <LocalDate, List<Transaction>>
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService readObject
+FINER:  Reading object (Deserializtion) used
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_MoneyService filteredTran
+FINE: Map<String List <Transaction>>> populated based on the Request from the HQ
+2020-05-12 12:18:57 ya.java.effective.HQ_MoneyService.HQ_App main
+FINE: Test completed

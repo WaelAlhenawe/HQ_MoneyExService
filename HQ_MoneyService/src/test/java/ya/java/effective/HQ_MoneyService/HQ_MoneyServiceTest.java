@@ -321,7 +321,6 @@ public class HQ_MoneyServiceTest {
 
         Map<String, Map<LocalDate, List <Transaction>>> result; 
         
-        hq.profitStatistic();
         
 //        hq.printSummarizeProfitStatistic(period, temp, endDate, startDate);
         
@@ -393,7 +392,6 @@ public class HQ_MoneyServiceTest {
 		
 		resultTemp.putIfAbsent(tempDate, t);
 		
-		hq.profitStatistic();
 		
 		siteTemp.putIfAbsent("SOUTH", resultTemp);
 		

@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
+  <help_text>
+**HQ_SouthGroup_V2.0**
+
+valign=center
+fontsize=20
+lw=4</help_text>
   <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>270</x>
-      <y>222</y>
+      <y>162</y>
       <w>180</w>
-      <h>210</h>
+      <h>258</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Valuetype&gt;&gt;
 Request
 --
 -site = new ArrayList(): List&lt;String&gt;
--duration: String
--date: LocalDate
+-startDate: LocalDate
+-endDate: LocalDate
 -currency: String
+-presentingMode: ProfitStatisticMode
 -logger: Logger
 --
-+Request(String site, String duration,
-LocalDate date, String currency): ctor
++Request(String site, 
+         LocalDate endDate, 
+         LocalDate date, 
+         String currency, 
+         ProfitStatisticMode 
+         presentingMode): ctor
 +getSite(): List&lt;String&gt;
-+getDuration(): String
-+getDate(): LocalDate
++getEndDate(): LocalDate
 +getCurrency(): String
++getStartDate(): LocalDate
++getPresentingMode(): ProfitStatisticMode
 +hashCode(): int
 +equals(Object obj): boolean
 +toString(): String
@@ -110,7 +122,7 @@ Hold all the info about each Transaction</panel_attributes>
     <coordinates>
       <x>204</x>
       <y>108</y>
-      <w>42</w>
+      <w>54</w>
       <h>138</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -123,9 +135,9 @@ Hold all the info about each Transaction</panel_attributes>
       <x>30</x>
       <y>234</y>
       <w>204</w>
-      <h>198</h>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>AppGUI
+    <panel_attributes>AppCLI
 --
 ~input = new Scanner(System.in): Scanner
 -logger: Logger
@@ -137,10 +149,7 @@ Hold all the info about each Transaction</panel_attributes>
 currencyMap): String
 ~filePath(): String
 ~StatisticType(): String
-~printingChoiceForStats(String siteChoice,
-                        String periodChoice, 
-                        String startDayPeriod, 
-                        currencyCode): void
+
 --
 Responsibilities
 Interact with the user 
@@ -152,7 +161,7 @@ Interact with the user
     <coordinates>
       <x>600</x>
       <y>126</y>
-      <w>60</w>
+      <w>84</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
@@ -163,13 +172,13 @@ Interact with the user
     <id>Relation</id>
     <coordinates>
       <x>372</x>
-      <y>54</y>
+      <y>48</y>
       <w>120</w>
-      <h>24</h>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;use&gt;&gt;</panel_attributes>
-    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>180.0;30.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -191,12 +200,12 @@ fontsize=16</panel_attributes>
     <coordinates>
       <x>354</x>
       <y>108</y>
-      <w>54</w>
-      <h>126</h>
+      <w>72</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;Create&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Text</id>
@@ -207,7 +216,7 @@ fontsize=16</panel_attributes>
       <h>42</h>
     </coordinates>
     <panel_attributes>
-**HQ_SouthGroup_V3.0**
+**HQ_SouthGroup_V4.0**
 
 valign=center
 fontsize=20
@@ -257,9 +266,9 @@ Statistic</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>24</x>
-      <y>462</y>
+      <y>444</y>
       <w>600</w>
-      <h>156</h>
+      <h>174</h>
     </coordinates>
     <panel_attributes>ConExApp
 --
@@ -267,14 +276,16 @@ Statistic</panel_attributes>
 +Semicolon_Separator = ";": String
 +Currency_Code_Place = 2: int
 +Currency_Rate_Place = 3: int
++Commission = 0.005d: double
 -logger: Logger
 --
 +readSiteNamesConfig(String fileName): Optional&lt;List&lt;String&gt;&gt;
-+readCurrencyConfigFiles(String duration, LocalDate startDate, String filesLocations): Optional&lt;Map&lt;LocalDate, Map&lt;String, Double&gt;&gt;&gt;
-+readCurrencyConfig(String fileName): Optional&lt;Map&lt;String, Double&gt;&gt;
++readCurrencyConfigFiles(LocalDate endDate, LocalDate startDate, String filesLocations): Optional&lt;Map&lt;LocalDate, Map&lt;String, Double&gt;&gt;&gt;
+~readCurrencyConfig(String fileName): Map&lt;String, Double&gt;
 +helpToParsing(String sepearator, int partNo): Function&lt;String, String&gt;
 -keyMapper(String sepearator, int partNo): Function&lt;String, String&gt;
 -valueMapper(String sepearator, int partNo): Function&lt;String, Double&gt;
+~availableCurrency(Map&lt;LocalDate, Map&lt;String, Double&gt;&gt; currencyMap): List&lt;String&gt;
 --
 Responsibilities
 Configure the App with All the necessary info in order to be ready</panel_attributes>
@@ -290,18 +301,18 @@ Configure the App with All the necessary info in order to be ready</panel_attrib
     </coordinates>
     <panel_attributes>HQ_MoneyService
 --
--result: Map&lt;String, Map&lt;LocalDate, List&lt;Transaction&gt;&gt;&gt;
+-result: Map&lt;String, List&lt;Transaction&gt;&gt;
 -currencyMap: Map&lt;LocalDate, Map&lt;String, Double&gt;&gt;
 -logger: Logger
 --
 +HQ_MoneyService(Map&lt;LocalDate, Map&lt;String, Double&gt;&gt; currencyMap): ctor
-+filteredTran(Request staticRequest, String location): void
--keyMapper(): Function&lt;String, LocalDate&gt;
++filteredTran(Request statisticRequest, String location): void
+-keyMapper(): Function&lt;String, String&gt;
 -valueMapper(String currencyCode): Function&lt;String, List&lt;Transaction&gt;&gt;
 +printFilteredMap(): void
-+profitStatistic(Request staticRequest): List&lt;ProfitResult&gt;
++profitStatistic(Request userRequest): List&lt;ProfitResult&gt;
 +readObject(String filename): List&lt;Transaction&gt;
-+dayCounter(String duration): int
+-adjuster(ProfitStatisticMode prsentingModae): TemporalAdjuster
 --
 </panel_attributes>
     <additional_attributes/>
@@ -355,7 +366,7 @@ Configure the App with All the necessary info in order to be ready</panel_attrib
     <coordinates>
       <x>114</x>
       <y>150</y>
-      <w>42</w>
+      <w>54</w>
       <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -382,11 +393,11 @@ fontsize=16</panel_attributes>
     <coordinates>
       <x>234</x>
       <y>108</y>
-      <w>42</w>
-      <h>366</h>
+      <w>54</w>
+      <h>348</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;use&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;590.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;560.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
