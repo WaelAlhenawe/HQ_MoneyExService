@@ -179,11 +179,11 @@ public class HQ_MoneyService implements HQ{
 						Map.Entry<TransactionMode, List<Transaction>> tarnansaction = traModeGroup.next();
 						for (Transaction x : tarnansaction.getValue()) {
 							if (x.getMode().equals(TransactionMode.BUY)){
-								buy +=  (int)(x.getAmount()*this.currencyMap.get(date.getKey()).get(x.getCurrencyCode())*(1+ConExApp.Commission));
+								buy +=  (int)(x.getAmount()*this.currencyMap.get(x.getTimeStamp().toLocalDate()).get(x.getCurrencyCode())*(1+ConExApp.Commission));
 
 							}
 							if (x.getMode().equals(TransactionMode.SELL)){
-								sell += (int)(x.getAmount()*this.currencyMap.get(date.getKey()).get(x.getCurrencyCode())*(1-ConExApp.Commission));
+								sell += (int)(x.getAmount()*this.currencyMap.get(x.getTimeStamp().toLocalDate()).get(x.getCurrencyCode())*(1-ConExApp.Commission));
 							}
 						}
 					}
