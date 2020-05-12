@@ -1,0 +1,2 @@
+2020-04-30 19:08:37 ya.java.effective.HQ_MoneyService.HQ_App main
+FINE: Starting test

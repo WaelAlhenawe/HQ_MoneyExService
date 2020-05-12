@@ -142,6 +142,42 @@ public class RequestTest {
 
 
 	}
+
+	@Test
+	public void testRequest13() {
+
+		LocalDate startDate2 = LocalDate.parse("2020-04-20");
+		LocalDate endDate2 = LocalDate.parse("2020-04-22");
+		
+		Request r2 = new Request("ALL",startDate2,endDate2,"EUR", null);
+		Assert.assertFalse(r2.getEndDate().equals(r1.getEndDate()));
+
+
+	}
+
+	@Test
+	public void testRequest14() {
+
+		LocalDate startDate2 = LocalDate.parse("2020-04-20");
+		LocalDate endDate2 = LocalDate.parse("2020-04-22");
+		
+		Request r2 = new Request("ALL",startDate2,endDate2,"EUR", null);//
+//		LocalDate date1 = LocalDate.parse("2020-04-23");
+//		Request r3 = new Request("SOUTH","WEEK",date1,"GBP");
+		
+		String check = "Request [site=[SOUTH, CENTER, NORTH, WEST], startDate=2020-04-22, endDate=2020-04-20, currency=EUR, presentingMode=null]";
+		String temp = r2.toString();
+		
+		boolean xCheck = false;
+		if(check.equalsIgnoreCase(temp)) {
+			xCheck = true;
+			
+		}
+		
+		Assert.assertTrue(xCheck);
+
+
+	}
 	
 }
 

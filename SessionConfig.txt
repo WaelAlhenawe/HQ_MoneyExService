@@ -1,0 +1,6 @@
+SessionDate = 2020-04-30
+StartSession  = 08:00
+EndSession = 20:00
+CommissionRate = 0.005
+MinOrder = 50
+Site = SOUTH
