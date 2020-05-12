@@ -5,6 +5,5 @@ public enum ProfitStatisticMode {
 	DAILY,	
 	WEEKLY,	
 	MONTHLY,
-	ENTIRELY;
 
 }

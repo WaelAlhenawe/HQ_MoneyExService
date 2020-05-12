@@ -2,7 +2,6 @@ package ya.java.effective.HQ_MoneyService;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -148,7 +147,6 @@ public class HQApp_Support {
 			System.out.println("1 - Daily");
 			System.out.println("2 - Weekly");
 			System.out.println("3 - Monthly");
-			System.out.println("4 - The whole Period");
 			System.out.println("");
 
 			System.out.println("0 - Exit");
@@ -162,8 +160,6 @@ public class HQApp_Support {
 				return ProfitStatisticMode.WEEKLY;
 			}else if(Period_choice.equals("3")) {
 				return ProfitStatisticMode.MONTHLY;
-			}else if(Period_choice.equals("4")) {
-				return ProfitStatisticMode.ENTIRELY;
 			}else if(Period_choice.equals("0")) {
 				System.exit(0);
 			

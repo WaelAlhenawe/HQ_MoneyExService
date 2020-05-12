@@ -1,6 +1,7 @@
 package ya.java.effective.HQ_MoneyService;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -58,12 +59,8 @@ public class HQ_App
 			Statistic.printFilteredMap();
 		}
 		if (statisticType.equals("Profits")) {
-			Set<ProfitResult> temp = Statistic.profitStatistic();
-//			for (ProfitResult y : temp) {
-//				System.out.println(y);
-//				
-//			}
-			Statistic.printSummarizeProfitStatistic(presentingMode, temp,endDate,StartDay_Period);
+			List<ProfitResult> temp = Statistic.profitStatistic(req);
+			temp.forEach(x -> System.out.println(x));
 		}
 		// End logging using a simple INFO message
 		logger.fine("Test completed");

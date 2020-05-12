@@ -34,7 +34,7 @@ public class HQ_MoneyServiceTest {
 		System.out.println(currencyMap);
 
 		x.printFilteredMap();
-		x.profitStatistic();
+		x.profitStatistic(req);
 
 		Assert.fail();
 	}
@@ -88,7 +88,7 @@ public class HQ_MoneyServiceTest {
 		x.filteredTran(req, "..//");
 
 		x.printFilteredMap();
-		x.profitStatistic();
+		x.profitStatistic(req);
 
 		boolean check = x.equals(x);
 		

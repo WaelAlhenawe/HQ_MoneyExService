@@ -10,13 +10,12 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.logging.Logger;
@@ -33,7 +32,7 @@ import affix.java.effective.moneyservice.TransactionMode;
  */
 public class HQ_MoneyService implements HQ{
 
-	private final Map<String, Map<LocalDate, List <Transaction>>> result; 
+	private final Map<String, List <Transaction>> result; 
 	private final Map<LocalDate, Map<String, Double>> currencyMap;
 
 	// Set up a logger
@@ -49,7 +48,8 @@ public class HQ_MoneyService implements HQ{
 
 	/**
 	 * Constructor	 
-	 * @param result
+	 * This Constructor will create a new map Map<String, List <Transaction>> inside it in order to fill it with all required details later on
+	 * where String is the key and its represent the site name and List of transactions as value  
 	 * @param currencyMap a Map of LocalDate of Map of String(Site ie SOUTH) and Double(holding the supported currencies)
 	 */
 	public HQ_MoneyService(Map<LocalDate,Map<String, Double>> currencyMap) {
@@ -59,19 +59,22 @@ public class HQ_MoneyService implements HQ{
 	}
 
 	/**
-	 * This method is used for Collect all the necessary information, and details   
-	 * @param staticrequest holding site, date from, duration, Currency with (All) available as a choice  
+	 * This method is used for Collect all the necessary information, and details based on the user request 
+	 * and it will fill Map of result for this class with all details.  
+	 * @param staticrequest holding site, date from, duration, Currency with (All) available as a choice,
+	 * @param String Files location  
 	 * @return An optional map with the site name as a key and List of transactions as values.
 	 */
 	@Override
-	public void filteredTran(Request staticRequest, String location) {
+	public void filteredTran(Request statisticRequest, String location) {
 
 		logger.finer(" Processing -> filter Transaction");
 
-		Map <LocalDate, List<Transaction>> temp = new TreeMap<>();
-		for( String s : staticRequest.getSite()) {
-			for (LocalDate date = staticRequest.getStartDate(); 
-					date.isBefore(staticRequest.getEndDate()); 
+		for( String s : statisticRequest.getSite()) {
+			List<Transaction> tempList = new ArrayList<Transaction>();
+			Map <String, List<Transaction>> temp=new TreeMap<>();
+			for (LocalDate date = statisticRequest.getStartDate(); 
+					date.isBefore(statisticRequest.getEndDate()); 
 					date = date.plusDays(1)){
 				LocalDate tempDate = date;
 				try {
@@ -79,31 +82,37 @@ public class HQ_MoneyService implements HQ{
 							.map(filePath -> filePath.getFileName().toString())
 							.filter(fileName-> fileName.contains(tempDate.toString()))
 							.filter(fileName-> fileName.contains(s))
-							.collect(Collectors.toMap(keyMapper(), valueMapper(staticRequest.getCurrency()))));
+							.collect(Collectors.toMap(keyMapper(), valueMapper(statisticRequest.getCurrency()))));
+					if (!temp.isEmpty()) {
+
+						for (Transaction x : temp.get(s)) {
+							tempList.add(x);
+						}
+						temp.clear();
+					}
+
 
 				} catch (IOException e1) {
 					System.out.println("IOException Occured "+e1);
 				}
 			}
-			logger.fine("Map<String, Map<LocalDate, List <Transaction>>> populated based on the Request from the HQ");
-			this.result.putIfAbsent(s.toUpperCase(), temp);
+			logger.fine("Map<String List <Transaction>>> populated based on the Request from the HQ");
+			this.result.putIfAbsent(s, tempList);
 		}
-
 	}
 
 	/**
 	 * This method is a keyMaper for building the the filtered Map.
 	 * @return Function<String, LocalDate> with the date of this Transaction.
 	 */
-	private static Function<String, LocalDate> keyMapper() {
+	private static Function<String, String> keyMapper() {
 
 		logger.finer("KeyMapper used to populate Map <LocalDate, List<Transaction>>");
 
-		Function<String, LocalDate> keyMapper = input -> {
+		Function<String, String> keyMapper = input -> {
 			String[] parts = input.split("_");
-			String[] subParts = parts[2].split("\\.");
-			LocalDate keyStringDate = LocalDate.parse(subParts[0]);
-			return keyStringDate;
+			String site = parts[1];
+			return site;
 		};
 		return keyMapper;
 	}
@@ -137,106 +146,59 @@ public class HQ_MoneyService implements HQ{
 	 */
 	@Override
 	public void printFilteredMap() {
-		this.result.forEach((k, v )-> v.forEach((ke,ve) -> ve.forEach((s) -> System.out.println(k + " : "+ ke + " : "+ s))));
+		this.result.forEach((k, v )->  System.out.println(k + " : "+ v));
 
 	}
 
 
 	/**
-	 *	This method is used to build a List of ProfitResult object for profit type of statistic for each currency each day.
+	 *	This method is used to build a List of ProfitResult object for profit type of statistic.
 	 * @param request holding site, date from, duration, Currency with (All) available as a choice  
-	 * @return List of ProfitResult object for profit type of statistic for each currency each day.
+	 * @return List of ProfitResult object for profit type of statistic based on the request details passed to it.
 	 */
 	@Override
 
-	public Set<ProfitResult> profitStatistic() {
-		Set<ProfitResult> result = new HashSet<>() ;
+	public List <ProfitResult> profitStatistic(Request userRequest) {
+		List<ProfitResult> finalList = new ArrayList<ProfitResult>();
+		Iterator<Map.Entry<String, List<Transaction>>> siteGroup = this.result.entrySet().iterator();
+		while (siteGroup.hasNext()) {
+			Map.Entry<String, List<Transaction>> transactions = siteGroup.next();
+			List<Transaction> temp = transactions.getValue();
+			Map<LocalDate, Map<String, Map<TransactionMode, List<Transaction>>>> result = temp.stream()
+					.collect(Collectors.groupingBy(item -> item.getTimeStamp().toLocalDate()
+							.with(adjuster(userRequest.getPresentingMode())), Collectors.groupingBy(first -> first.getCurrencyCode(), Collectors.groupingBy(third -> third.getMode()))));
+			Iterator<Map.Entry<LocalDate, Map<String, Map<TransactionMode, List<Transaction>>>>> dateGroup = result.entrySet().iterator();
+			while (dateGroup.hasNext()) {
+				Map.Entry<LocalDate, Map<String, Map<TransactionMode, List<Transaction>>>> date = dateGroup.next();
+				Iterator<Map.Entry<String, Map<TransactionMode, List<Transaction>>>> currencyGroup = date.getValue().entrySet().iterator();
+				while (currencyGroup.hasNext()) {
+					Map.Entry<String, Map<TransactionMode, List<Transaction>>> currency = currencyGroup.next();
+					Iterator<Map.Entry<TransactionMode, List<Transaction>>> traModeGroup = currency.getValue().entrySet().iterator();
+					int sell = 0, buy = 0;
+					while (traModeGroup.hasNext()) {
+						Map.Entry<TransactionMode, List<Transaction>> tarnansaction = traModeGroup.next();
+						for (Transaction x : tarnansaction.getValue()) {
+							if (x.getMode().equals(TransactionMode.BUY)){
+								buy +=  (int)(x.getAmount()*this.currencyMap.get(date.getKey()).get(x.getCurrencyCode())*(1+ConExApp.Commission));
 
-		Map<String, int[]> buySellMap = new TreeMap<String, int[]>();
-		Iterator<Map.Entry<String, Map<LocalDate, List <Transaction>>>> iterator = this.result.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<String, Map<LocalDate, List <Transaction>>> entry = iterator.next();
-			Iterator<Map.Entry<LocalDate, List <Transaction>>> iterator2 = entry.getValue().entrySet().iterator();
-			while (iterator2.hasNext()) {
-				Map.Entry<LocalDate, List <Transaction>> entry2 = iterator2.next();
-				for (Transaction Tra : entry2.getValue()) {
-					int buySellAmount [] = new int [] {0,0};
-					if( Tra.getMode().equals(TransactionMode.BUY)) {
-						logger.finest(" Calculating Buy amount");
-						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
-							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1];
-							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0] + 
-									(int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1+ConExApp.Commission));
-						}
-						else {
-							buySellAmount[0] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1+ConExApp.Commission));
+							}
+							if (x.getMode().equals(TransactionMode.SELL)){
+								sell += (int)(x.getAmount()*this.currencyMap.get(date.getKey()).get(x.getCurrencyCode())*(1-ConExApp.Commission));
+							}
 						}
 					}
-					if( Tra.getMode().equals(TransactionMode.SELL)) {
-						logger.finest(" Calculating Sell amount");
-						if (buySellMap.containsKey(Tra.getCurrencyCode())) {
-							buySellAmount[0] = buySellMap.get(Tra.getCurrencyCode())[0];
-							buySellAmount[1] = buySellMap.get(Tra.getCurrencyCode())[1] +
-									(int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1-ConExApp.Commission));
-						}
-						else {
-							buySellAmount[1] = (int)(Tra.getAmount()*this.currencyMap.get(entry2.getKey()).get(Tra.getCurrencyCode())*(1-ConExApp.Commission));
 
-						}				
-					}
-					buySellMap.put(Tra.getCurrencyCode(), buySellAmount);
-					logger.finest("buySellMap [ Map<String, int[]> ] is populated with " + Tra.getCurrencyCode()+",  "
-							                                                       + "[ " +buySellAmount[0]+", "+buySellAmount[1]+" ] ");
-					                                                                          
-
-					} 
-				Iterator<Map.Entry<String, int []>> iterator3 = buySellMap.entrySet().iterator();
-				while (iterator3.hasNext()) {
-					Map.Entry<String, int []> entry3 = iterator3.next();
-					
-					logger.finest(" Profit Details from buySellMap added to the class ProfitResult");
-					result.add(new ProfitResult(entry3.getValue()[0], entry3.getValue()[1], entry2.getKey(), entry.getKey(), entry3.getKey()));
+					finalList.add( new ProfitResult(buy, sell, date.getKey(), transactions.getKey(), currency.getKey()));
 				}
-				buySellMap.clear();
 			}
 		}
-		return result;
-
+		return finalList;
 	}
 
-	@Override
-	public void printSummarizeProfitStatistic(ProfitStatisticMode period, Set<ProfitResult> temp, LocalDate endDate, LocalDate startDate) {
-		Map<ProfitStatisticMode , TemporalAdjuster> ADJUSTERS = new HashMap<>();
 
-		ADJUSTERS.put(ProfitStatisticMode.DAILY, TemporalAdjusters.ofDateAdjuster(d -> d)); // identity
-		ADJUSTERS.put(ProfitStatisticMode.WEEKLY, TemporalAdjusters.previousOrSame(DayOfWeek.of(1)));
-		ADJUSTERS.put(ProfitStatisticMode.MONTHLY, TemporalAdjusters.firstDayOfMonth());
-		ADJUSTERS.put(ProfitStatisticMode.ENTIRELY, TemporalAdjusters.ofDateAdjuster(d->d));
-		//.minusDays(Period.between(startDate, endDate).getDays())
-		Map<LocalDate, List<ProfitResult>> resultDate = temp.stream()
-			    .collect(Collectors.groupingBy(item -> item.getTimeStamp()
-			            .with(ADJUSTERS.get(period))));
-		Iterator<Map.Entry<LocalDate, List<ProfitResult>>> iterator = resultDate.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<LocalDate, List<ProfitResult>> entry = iterator.next();
-			Map<String, List<ProfitResult>> resultCode = entry.getValue().stream().collect(Collectors.groupingBy(item -> item.getCurrencyCode()));
-			Iterator<Map.Entry<String, List<ProfitResult>>> iterator2 = resultCode.entrySet().iterator();
-			while (iterator2.hasNext()) {
-				Map.Entry<String, List<ProfitResult>> entry2 = iterator2.next();
-				int sell = 0, buy = 0;
-				String siteName = "";
-				for (ProfitResult x : entry2.getValue() ) {
-					sell += x.getSell();
-					buy += x.getBuy();
-					siteName = x.getSiteName();
-				}
-				ProfitResult oneResult = new ProfitResult(buy, sell, entry.getKey(),siteName, entry2.getKey());
-				System.out.println(oneResult);
 
-			}
-		}
-	}
-	
+
+
 	/**
 	 * Read data from serialized file, as an object
 	 * @param filename a String holding a input or output filename
@@ -259,7 +221,19 @@ public class HQ_MoneyService implements HQ{
 		//		presentFileContents(transactionList);
 
 		return (List<Transaction>) transactionList;
+
 	}
+
+	private TemporalAdjuster adjuster ( ProfitStatisticMode prsentingModae) {
+		Map<ProfitStatisticMode , TemporalAdjuster> ADJUSTERS = new HashMap<>();
+
+		ADJUSTERS.put(ProfitStatisticMode.DAILY, TemporalAdjusters.ofDateAdjuster(d -> d)); // identity
+		ADJUSTERS.put(ProfitStatisticMode.WEEKLY, TemporalAdjusters.previousOrSame(DayOfWeek.of(1)));
+		ADJUSTERS.put(ProfitStatisticMode.MONTHLY, TemporalAdjusters.firstDayOfMonth());
+
+		return ADJUSTERS.get(prsentingModae);
+	}
+
 
 
 }
